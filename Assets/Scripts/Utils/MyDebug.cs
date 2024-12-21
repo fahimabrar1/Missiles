@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class MyDebug
+public abstract class MyDebug
 {
     public static void Log(string str)
     {
