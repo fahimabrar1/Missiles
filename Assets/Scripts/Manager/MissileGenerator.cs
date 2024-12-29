@@ -6,6 +6,7 @@ public class MissileGenerator : MonoBehaviour
 {
     public HomingMissile homingMissilePrefab; // Prefab for the missile
     public GameObject indicatorPrefab; // Prefab for the missile indicator
+    public Transform indicatorParent; // Prefab for the missile indicator
     public Transform player; // Player reference
     public float spawnRange = 10f; // Distance outside the camera for spawning missiles
     public float spawnInterval = 2f; // Time interval between spawns
@@ -32,7 +33,11 @@ public class MissileGenerator : MonoBehaviour
         missile.OnMissileDestroyed += HandleMissileDestroyed;
 
         if(missile==null) return;
- 
+    
+        // Instantiate the indicator
+        var indicator = Instantiate(indicatorPrefab, Vector3.zero, Quaternion.identity, indicatorParent);
+        var indicatorScript = indicator.GetComponent<IMissileIndicator>();
+        indicatorScript?.Initialize(missile.transform, _mainCamera);
     }
 
     private Vector3 GetRandomSpawnPosition()
