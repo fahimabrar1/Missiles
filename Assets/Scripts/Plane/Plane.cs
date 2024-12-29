@@ -28,15 +28,7 @@ public class Plane : MonoBehaviour
     
         // Apply forward movement
         _rb.velocity = speed * speedMultiplier * Time.deltaTime * transform.up;
-    
-        // // Rotate the plane based on horizontal input
-        // var rotation = -input.x * steer * Time.deltaTime;
-        // _rb.MoveRotation(_rb.rotation + rotation);
-        //
-        // // Tilt the plane for visual effect
-        // var tilt = -input.x * tiltAmount; // Negative for visual tilting in the correct direction
-        // transform.localRotation = Quaternion.Euler(0, tilt, _rb.rotation);
-        
+       
         // Calculate the rotation based on horizontal input
         var rotation = -input.x * steer * Time.deltaTime;
 
@@ -48,8 +40,6 @@ public class Plane : MonoBehaviour
         var tiltRotation = Quaternion.Euler(0,tilt,currentRotation.eulerAngles.z + rotation);
         transform.rotation = tiltRotation;
     }
-
-
 
     private Vector2 GetInput()
     {
