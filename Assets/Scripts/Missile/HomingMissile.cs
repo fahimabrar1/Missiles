@@ -1,6 +1,8 @@
 using System;
+using Indicator;
 using Interfaces;
 using UnityEngine;
+using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
 [RequireComponent(typeof(Rigidbody2D))]
@@ -11,7 +13,7 @@ public class HomingMissile : MonoBehaviour,IMissile
     public Transform target; // The target (e.g., the plane)
     public GameObject explosionPrefab; // Particle effect for explosion
     public AudioClip explosionSound; // Sound effect for explosion
-
+    public IMissileIndicator missileIndicator;
     private Rigidbody2D _rb;
     public Action<HomingMissile> OnMissileDestroyed;
 
@@ -81,6 +83,7 @@ public class HomingMissile : MonoBehaviour,IMissile
 
     private void OnDestroy()
     {
+        missileIndicator.OnDestroyMissile();
         OnMissileDestroyed?.Invoke(this);
     }
   

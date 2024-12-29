@@ -27,6 +27,11 @@ namespace Indicator
             _indicator = GetComponent<RectTransform>();
         }
 
+        public void OnDestroyMissile()
+        {
+            Destroy(gameObject);
+        }
+
         private void LateUpdate()
         {
             if (_target is null)

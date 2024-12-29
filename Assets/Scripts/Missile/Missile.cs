@@ -22,12 +22,13 @@ public class Missile : MonoBehaviour
         // Direction to the target
         var directionToTarget = (Vector2)target.position - _rb.position;
         directionToTarget.Normalize();
-        
+
         // Current forward direction of the missile
         Vector2 forward = transform.up;
         // Use the cross product to determine steering direction
         var cross = Vector3.Cross(forward, directionToTarget).z; // Z-axis gives direction (-1 for left, 1 for right)
-    MyDebug.Log($"Cross product:{cross}");
+
+        MyDebug.Log($"Cross product:{cross}");
         // Apply rotation based on the cross product
         var rotation = steerSpeed * cross * Time.deltaTime;
         transform.Rotate(0, 0, rotation);
@@ -40,7 +41,7 @@ public class Missile : MonoBehaviour
     {
         // Check if the missile hits the target
         if (collision.transform != target) return;
-        Debug.Log("Missile hit the target!");
+        MyDebug.Log("Missile hit the target!");
         Destroy(gameObject); // Destroy the missile on impact
     }
 }

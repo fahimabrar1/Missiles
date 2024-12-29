@@ -1,3 +1,4 @@
+using Indicator;
 using UnityEngine;
 
 namespace Interfaces

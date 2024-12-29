@@ -29,8 +29,8 @@ public class MissileGenerator : MonoBehaviour
 
         // Instantiate the missile
         var missile = Instantiate(homingMissilePrefab, spawnPosition, Quaternion.identity);
-        missile.Initialize(player);
         missile.OnMissileDestroyed += HandleMissileDestroyed;
+        missile.Initialize(player);
 
         if(missile==null) return;
     
@@ -38,6 +38,7 @@ public class MissileGenerator : MonoBehaviour
         var indicator = Instantiate(indicatorPrefab, Vector3.zero, Quaternion.identity, indicatorParent);
         var indicatorScript = indicator.GetComponent<IMissileIndicator>();
         indicatorScript?.Initialize(missile.transform, _mainCamera);
+        missile.missileIndicator = indicatorScript;
     }
 
     private Vector3 GetRandomSpawnPosition()
