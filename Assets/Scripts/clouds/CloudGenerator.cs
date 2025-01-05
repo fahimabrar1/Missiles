@@ -39,7 +39,7 @@ namespace clouds
                 var position = new Vector3(
                     (x - 1) * chunkSize.x,
                     (y - 1) * chunkSize.y,
-                    0f
+                    1
                 );
 
                 chunkGrid[x, y] = Instantiate(GetRandomChunkPrefab(), position, Quaternion.identity);
