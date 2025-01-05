@@ -5,12 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7503ae66-8dc8-4153-bc80-f7fd65bde027" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/clouds.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/clouds/CloudChunkResizer.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/clouds/CloudChunkResizer.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Missiles/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Missiles/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Indicator/Arrow Indicator.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Indicator/Arrow Indicator.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Clouds/Cloud 1.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Clouds/Cloud 1.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Clouds/Cloud 1_1.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Clouds/Cloud 1_1.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Effects/Destroy Particle.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Effects/Destroy Particle.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Plane/Plane.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Plane/Plane.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/clouds/CloudGenerator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/clouds/CloudGenerator.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,6 +26,8 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Assets/Prefabs/Timer/StopwatchTimer.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Manager/SkillGenerator.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Utils/MyDebug.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="ProjectColorInfo">{
@@ -109,6 +113,7 @@
       <workItem from="1734798580745" duration="4636000" />
       <workItem from="1735490636450" duration="5758000" />
       <workItem from="1736006213207" duration="10781000" />
+      <workItem from="1736100409169" duration="6503000" />
     </task>
     <servers />
   </component>
