@@ -1,55 +1,73 @@
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace clouds
 {
     public class CloudGenerator : MonoBehaviour
     {
-        public List<GameObject> cloudChunkPrefabs; // List of cloud chunk prefabs
-        public int gridSize = 3; // Grid size (e.g., 3x3)
-        private readonly Vector2 chunkSize = new(50, 50); // Fixed chunk size
-        private Vector2Int centralChunkIndex; // The index of the central chunk
-        private GameObject[,] chunkGrid; // Stores chunk instances
-        private Vector2Int planeChunk;
-        private Transform planeTransform; // Plane's transform
+        public Transform player; // The player or camera transform to track movement
+        public GameObject[] cloudChunks; // Array of cloud chunk GameObjects
+        public float chunkSize = 50f; // Size of each chunk (width and height)
+        public int gridWidth = 3; // Number of chunks horizontally
+        public int gridHeight = 3; // Number of chunks vertically
+
+        private Vector2Int _currentGridCenter;
 
         private void Start()
         {
-            planeTransform = FindObjectOfType<Plane>().transform; // Replace with your plane's identifier
-            chunkGrid = new GameObject[gridSize, gridSize];
-
-            InitializeChunks();
-            centralChunkIndex = new Vector2Int(gridSize / 2, gridSize / 2); // Start in the middle chunk
+            // Initialize the grid center based on the starting position
+            _currentGridCenter = new Vector2Int(gridWidth / 2, gridHeight / 2);
         }
 
         private void Update()
         {
-            var planePosition = planeTransform.position;
-            planeChunk = new Vector2Int(Mathf.RoundToInt(planePosition.x / chunkSize.x),
-                Mathf.RoundToInt(planePosition.y / chunkSize.y));
-            // Determine the chunk index the plane is in
+            var newGridCenter = GetGridCenterFromPlayer();
+
+            if (newGridCenter == _currentGridCenter) return;
+            ShiftChunks(_currentGridCenter, newGridCenter);
+            _currentGridCenter = newGridCenter;
         }
 
-        private void InitializeChunks()
+        private Vector2Int GetGridCenterFromPlayer()
         {
-            // Initialize grid
-            for (var x = 0; x < gridSize; x++)
-            for (var y = 0; y < gridSize; y++)
+            // Calculate the current grid center based on the player's position
+            var centerX = Mathf.FloorToInt(player.position.x / chunkSize) + gridWidth / 2;
+            var centerY = Mathf.FloorToInt(player.position.y / chunkSize) + gridHeight / 2;
+            return new Vector2Int(centerX, centerY);
+        }
+
+        private void ShiftChunks(Vector2Int oldCenter, Vector2Int newCenter)
+        {
+            var deltaX = newCenter.x - oldCenter.x;
+            var deltaY = newCenter.y - oldCenter.y;
+
+            foreach (var chunk in cloudChunks)
             {
-                var position = new Vector3(
-                    (x - 1) * chunkSize.x,
-                    (y - 1) * chunkSize.y,
-                    1
-                );
+                var chunkPos = chunk.transform.position;
 
-                chunkGrid[x, y] = Instantiate(GetRandomChunkPrefab(), position, Quaternion.identity);
+                // Shift horizontally
+                if (deltaX != 0)
+                    switch (deltaX)
+                    {
+                        case > 0 when chunkPos.x < newCenter.x * chunkSize - gridWidth * chunkSize / 2:
+                            chunk.transform.position += Vector3.right * (gridWidth * chunkSize);
+                            break;
+                        case < 0 when chunkPos.x > newCenter.x * chunkSize + gridWidth * chunkSize / 2:
+                            chunk.transform.position -= Vector3.right * (gridWidth * chunkSize);
+                            break;
+                    }
+
+                // Shift vertically
+                if (deltaY != 0)
+                    switch (deltaY)
+                    {
+                        case > 0 when chunkPos.y < newCenter.y * chunkSize - gridHeight * chunkSize / 2:
+                            chunk.transform.position += Vector3.up * (gridHeight * chunkSize);
+                            break;
+                        case < 0 when chunkPos.y > newCenter.y * chunkSize + gridHeight * chunkSize / 2:
+                            chunk.transform.position -= Vector3.up * (gridHeight * chunkSize);
+                            break;
+                    }
             }
-        }
-
-
-        private GameObject GetRandomChunkPrefab()
-        {
-            return cloudChunkPrefabs[Random.Range(0, cloudChunkPrefabs.Count)];
         }
     }
 }
