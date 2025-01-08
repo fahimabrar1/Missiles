@@ -90,6 +90,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   screenOffset: 50
+  innerImage: {fileID: 4613748730829737615}
+  outerImage: {fileID: 1626314084696416231}
 --- !u!1 &7026200874245061569
 GameObject:
   m_ObjectHideFlags: 0

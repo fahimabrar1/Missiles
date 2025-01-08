@@ -1,3 +1,4 @@
+using Interfaces;
 using UnityEngine;
 
 namespace Skills
@@ -16,12 +17,7 @@ namespace Skills
         public SpriteRenderer bodySpriteRenderer;
         public SpriteRenderer iconSpriteRenderer;
 
-        [Header("Indicators")] public GameObject speedIndicatorPrefab;
-
-        public GameObject shieldIndicatorPrefab;
-        public GameObject pointIndicatorPrefab;
-
-        private GameObject indicatorInstance;
+        private IIndicator indicatorInstance;
 
         private void OnEnable()
         {
@@ -38,7 +34,12 @@ namespace Skills
         private void OnDisable()
         {
             // Destroy indicator when this object is disabled
-            if (indicatorInstance != null) Destroy(indicatorInstance);
+            if (indicatorInstance != null) indicatorInstance.OnDestroyMissile();
+        }
+
+        public void Initialize(IIndicator indicator)
+        {
+            indicatorInstance = indicator;
         }
     }
 }

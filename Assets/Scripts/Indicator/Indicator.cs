@@ -1,36 +1,19 @@
-using System;
 using Interfaces;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace Indicator
 {
-    public class MissileIndicator : MonoBehaviour, IMissileIndicator
+    public class Indicator : MonoBehaviour, IIndicator
     {
-        private Transform _target;
-        private Camera _mainCamera;
+        [SerializeField] private float screenOffset = 50f; // Offset distance from the screen edges
+        public Image innerImage;
+        public Image outerImage;
+
         private RectTransform _indicator;
-        private Image image;
-        [SerializeField]
-        private float screenOffset = 50f; // Offset distance from the screen edges
+        private Camera _mainCamera;
+        private Transform _target;
 
-
-        private void Awake()
-        {
-            image = GetComponent<Image>();
-        }
-
-        public void Initialize(Transform target, Camera mainCamera)
-        {
-            _target = target;
-            _mainCamera = mainCamera;
-            _indicator = GetComponent<RectTransform>();
-        }
-
-        public void OnDestroyMissile()
-        {
-            Destroy(gameObject);
-        }
 
         private void LateUpdate()
         {
@@ -47,8 +30,8 @@ namespace Indicator
                              screenPoint.y > 0 && screenPoint.y < Screen.height;
 
             // Show/hide indicator
-            image.enabled =!isOnScreen;
-
+            outerImage.enabled = !isOnScreen;
+            innerImage.enabled = !isOnScreen;
             if (isOnScreen) return; // Clamp the indicator to the edges of the screen with offset
             screenPoint.x = Mathf.Clamp(screenPoint.x, screenOffset, Screen.width - screenOffset);
             screenPoint.y = Mathf.Clamp(screenPoint.y, screenOffset, Screen.height - screenOffset);
@@ -58,6 +41,18 @@ namespace Indicator
             var direction = screenPoint - new Vector3(Screen.width / 2f, Screen.height / 2f, 0);
             var angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
             _indicator.rotation = Quaternion.Euler(0, 0, angle - 90);
+        }
+
+        public void Initialize(Transform target, Camera mainCamera)
+        {
+            _target = target;
+            _mainCamera = mainCamera;
+            _indicator = GetComponent<RectTransform>();
+        }
+
+        public void OnDestroyMissile()
+        {
+            Destroy(gameObject);
         }
     }
 }

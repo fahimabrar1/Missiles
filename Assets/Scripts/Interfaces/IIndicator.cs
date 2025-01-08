@@ -2,10 +2,9 @@ using UnityEngine;
 
 namespace Interfaces
 {
-    public interface IMissileIndicator
+    public interface IIndicator
     {
         void Initialize(Transform missile, Camera mainCamera);
         void OnDestroyMissile();
     }
-
 }
