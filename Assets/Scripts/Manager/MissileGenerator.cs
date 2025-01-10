@@ -7,6 +7,7 @@ public class MissileGenerator : MonoBehaviour
     public GameObject homingMissileIndicatorPrefab; // Prefab for the missile
     public Transform player; // Player reference
     public float spawnRange = 10f; // Distance outside the camera for spawning missiles
+    public float spawnAfterDelay = 6f; // Delay before spawning missiles
     public float spawnInterval = 2f; // Time interval between spawns
     public IndicatorManager indicatorManager; // Reference to the IndicatorManager
 
@@ -20,7 +21,7 @@ public class MissileGenerator : MonoBehaviour
 
     private void Start()
     {
-        InvokeRepeating(nameof(SpawnMissile), spawnInterval, spawnInterval);
+        InvokeRepeating(nameof(SpawnMissile), spawnAfterDelay, spawnInterval);
     }
 
     private void SpawnMissile()
