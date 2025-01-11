@@ -944,7 +944,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37c0c0d449bf439ea8cc82ead1100b4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  direction: 2
   duration: 0.5
   slideEase: 27
   slideInTargetPosition: {x: 520.26, y: -381}
@@ -1847,7 +1846,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 121.08}
   m_SizeDelta: {x: 0, y: 121.0779}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &545648312
@@ -1862,7 +1861,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37c0c0d449bf439ea8cc82ead1100b4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  direction: 0
   duration: 0.5
   slideEase: 19
   slideInTargetPosition: {x: 0, y: 0}
@@ -3046,6 +3044,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   resumeButtonScaler: {fileID: 22365599}
+  pauseButtonScaler: {fileID: 853015923}
   headerSlider: {fileID: 545648312}
 --- !u!1 &899378258 stripped
 GameObject:
@@ -3597,7 +3596,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37c0c0d449bf439ea8cc82ead1100b4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  direction: 0
   duration: 0.5
   slideEase: 21
   slideInTargetPosition: {x: 50, y: -50}
@@ -4833,7 +4831,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37c0c0d449bf439ea8cc82ead1100b4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  direction: 1
   duration: 0.5
   slideEase: 27
   slideInTargetPosition: {x: 104, y: 0}

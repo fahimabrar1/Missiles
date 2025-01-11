@@ -1,29 +1,36 @@
+using DG.Tweening;
 using Transtions;
 using UnityEngine;
 
 public class InGameUI : MonoBehaviour
 {
     public ScaleAndFade resumeButtonScaler;
-
     public ScaleAndFade pauseButtonScaler;
     public SlideTransition headerSlider;
 
     private void OnEnable()
     {
         pauseButtonScaler.ScaleAndFadeIn();
+
         resumeButtonScaler.transform.localScale = Vector3.zero;
         resumeButtonScaler.gameObject.SetActive(false);
+
         headerSlider.gameObject.SetActive(true);
         headerSlider.SlideIn();
     }
 
     private void OnDisable()
     {
-        headerSlider.gameObject.SetActive(false);
-        headerSlider.SlideOut();
-        resumeButtonScaler.ScaleAndFadeOut();
-    }
+        if (headerSlider != null)
+            headerSlider.SlideOut(() =>
+            {
+                headerSlider.transform.DOKill();
+                headerSlider.gameObject.SetActive(false);
+            });
 
+        if (resumeButtonScaler != null)
+            resumeButtonScaler.ScaleAndFadeOut(() => { resumeButtonScaler.transform.DOKill(); });
+    }
 
     public void OnPauseGame()
     {
@@ -39,6 +46,7 @@ public class InGameUI : MonoBehaviour
         Time.timeScale = 1;
         pauseButtonScaler.gameObject.SetActive(true);
         pauseButtonScaler.ScaleAndFadeIn();
+
         resumeButtonScaler.ScaleAndFadeOut();
     }
 }

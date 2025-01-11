@@ -3,24 +3,21 @@ using UnityEngine;
 
 public class ComponentPoolManager<T> where T : Component
 {
-    private readonly T prefab;
     private readonly Queue<T> objects = new();
     private readonly Transform parent;
+    private readonly T prefab;
 
     public ComponentPoolManager(T prefab, int initialSize, Transform parent = null)
     {
         this.prefab = prefab;
         this.parent = parent;
 
-        for (int i = 0; i < initialSize; i++)
-        {
-            AddObjectToPool();
-        }
+        for (var i = 0; i < initialSize; i++) AddObjectToPool();
     }
 
     private T AddObjectToPool()
     {
-        T obj = Object.Instantiate(prefab, parent);
+        var obj = Object.Instantiate(prefab, parent);
         obj.gameObject.SetActive(false);
         objects.Enqueue(obj);
         return obj;
@@ -28,12 +25,9 @@ public class ComponentPoolManager<T> where T : Component
 
     public T Get()
     {
-        if (objects.Count == 0)
-        {
-            AddObjectToPool();
-        }
+        if (objects.Count == 0) AddObjectToPool();
 
-        T obj = objects.Dequeue();
+        var obj = objects.Dequeue();
         obj.gameObject.SetActive(true);
         return obj;
     }
@@ -43,28 +37,30 @@ public class ComponentPoolManager<T> where T : Component
         obj.gameObject.SetActive(false);
         objects.Enqueue(obj);
     }
+
+    public int GetPoolCount()
+    {
+        return objects.Count;
+    }
 }
 
 public class ObjectPoolManager
 {
-    private readonly GameObject prefab;
     private readonly Queue<GameObject> objects = new();
     private readonly Transform parent;
+    private readonly GameObject prefab;
 
     public ObjectPoolManager(GameObject prefab, int initialSize, Transform parent = null)
     {
         this.prefab = prefab;
         this.parent = parent;
 
-        for (int i = 0; i < initialSize; i++)
-        {
-            AddObjectToPool();
-        }
+        for (var i = 0; i < initialSize; i++) AddObjectToPool();
     }
 
     private GameObject AddObjectToPool()
     {
-        GameObject obj = Object.Instantiate(prefab, parent);
+        var obj = Object.Instantiate(prefab, parent);
         obj.SetActive(false);
         objects.Enqueue(obj);
         return obj;
@@ -72,12 +68,9 @@ public class ObjectPoolManager
 
     public GameObject Dequeue()
     {
-        if (objects.Count == 0)
-        {
-            AddObjectToPool();
-        }
+        if (objects.Count == 0) AddObjectToPool();
 
-        GameObject obj = objects.Dequeue();
+        var obj = objects.Dequeue();
         obj.SetActive(true);
         return obj;
     }

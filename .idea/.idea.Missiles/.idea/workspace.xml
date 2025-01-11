@@ -6,8 +6,13 @@
   <component name="ChangeListManager">
     <list default="true" id="7503ae66-8dc8-4153-bc80-f7fd65bde027" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Missiles/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Missiles/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Manager/GameManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Manager/GameManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Manager/MissileGenerator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Manager/MissileGenerator.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Manager/PoolManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Manager/PoolManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Missile/HomingMissile.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Missile/HomingMissile.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/InGameUI.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/InGameUI.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Utils/Transtions/ScaleAndFade.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Utils/Transtions/ScaleAndFade.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Utils/Transtions/SlideTransition.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Utils/Transtions/SlideTransition.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,6 +27,7 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Assets/Prefabs/Timer/StopwatchTimer.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Manager/PoolManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Manager/SkillGenerator.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Utils/MyDebug.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
@@ -112,7 +118,7 @@
       <workItem from="1736352590212" duration="3892000" />
       <workItem from="1736508334227" duration="2628000" />
       <workItem from="1736538356039" duration="4268000" />
-      <workItem from="1736573368251" duration="4450000" />
+      <workItem from="1736573368251" duration="7231000" />
     </task>
     <servers />
   </component>
