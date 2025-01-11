@@ -10,10 +10,11 @@ public class HomingMissile : MonoBehaviour, IMissile
     public float steerSpeed = 5f; // Steering speed
     public Transform target; // The target (e.g., the plane)
     public GameObject explosionPrefab; // Particle effect for explosion
-    public AudioClip explosionSound; // Sound effect for explosion
+    [SerializeField] private float randomAreaRadius = 10f; // Radius for random position
     private Rigidbody2D _rb;
     public IIndicator Indicator;
     public Action<HomingMissile> OnMissileDestroyed;
+    private Vector2 randomTargetPosition;
 
     private void Awake()
     {
@@ -29,12 +30,22 @@ public class HomingMissile : MonoBehaviour, IMissile
         Destroy(gameObject, 10f);
     }
 
+
     private void FixedUpdate()
     {
-        if (target is null) return; // If no target, do nothing
+        var targetPos = Vector2.zero;
+        try
+        {
+            targetPos = target.position;
+        }
+        catch (Exception e)
+        {
+            targetPos = _rb.position + Random.insideUnitCircle * randomAreaRadius;
+        }
 
-        // Direction to the target
-        var directionToTarget = (Vector2)target.position - _rb.position;
+
+        // Seek the assigned target
+        var directionToTarget = targetPos - _rb.position;
         directionToTarget.Normalize();
 
         // Current forward direction of the missile
@@ -60,17 +71,17 @@ public class HomingMissile : MonoBehaviour, IMissile
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.transform != target) return;
+        MyDebug.Log("HomingMissile OnTriggerEnter2D");
+        if (collision.CompareTag("Player") || collision.CompareTag("Missile"))
+        {
+            // Trigger explosion effect
+            if (explosionPrefab != null) Instantiate(explosionPrefab, transform.position, Quaternion.identity);
 
-        MyDebug.Log("Missile hit the target!");
+            LevelAudioPlayer.instance.OnPlayAudioByName("explosion-small");
 
-        // Trigger explosion effect
-        if (explosionPrefab != null) Instantiate(explosionPrefab, transform.position, Quaternion.identity);
 
-        // Play explosion sound
-        if (explosionSound != null) AudioSource.PlayClipAtPoint(explosionSound, transform.position);
-
-        Destroy(gameObject);
+            Destroy(gameObject);
+        }
     }
 
 

@@ -1,8 +1,10 @@
+using System;
 using System.Collections.Generic;
 using DefaultNamespace;
 using Skills;
 using Skills.model;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class SkillGenerator : MonoBehaviour
 {
@@ -48,12 +50,20 @@ public class SkillGenerator : MonoBehaviour
 
     private Vector3 GetRandomPositionWithinRadius()
     {
-        var direction = Random.insideUnitCircle.normalized; // Random direction
-        var distance = Random.Range(minRadius, maxRadius); // Random distance within range
-        var spawnPosition = new Vector3(direction.x, 0, direction.y) * distance;
+        try
+        {
+            var direction = Random.insideUnitCircle.normalized; // Random direction
+            var distance = Random.Range(minRadius, maxRadius); // Random distance within range
+            var spawnPosition = new Vector3(direction.x, 0, direction.y) * distance;
 
-        // Offset by player's position
-        return new Vector3(playerTransform.position.x+spawnPosition.x, playerTransform.position.y+spawnPosition.y, 0f);
+            // Offset by player's position
+            return new Vector3(playerTransform.position.x + spawnPosition.x,
+                playerTransform.position.y + spawnPosition.y, 0f);
+        }
+        catch (Exception e)
+        {
+            return Vector3.zero;
+        }
     }
 
     private SkillModel GetRandomSkillPrefab()
