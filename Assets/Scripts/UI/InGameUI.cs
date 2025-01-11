@@ -8,7 +8,7 @@ public class InGameUI : MonoBehaviour
     public ScaleAndFade pauseButtonScaler;
     public SlideTransition headerSlider;
 
-    private void OnEnable()
+    public void OnEnableUI()
     {
         pauseButtonScaler.ScaleAndFadeIn();
 
@@ -19,17 +19,15 @@ public class InGameUI : MonoBehaviour
         headerSlider.SlideIn();
     }
 
-    private void OnDisable()
+    public void OnDisableUI()
     {
-        if (headerSlider != null)
-            headerSlider.SlideOut(() =>
-            {
-                headerSlider.transform.DOKill();
-                headerSlider.gameObject.SetActive(false);
-            });
+        headerSlider.SlideOut(() =>
+        {
+            headerSlider.transform.DOKill();
+            headerSlider.gameObject.SetActive(false);
+        });
 
-        if (resumeButtonScaler != null)
-            resumeButtonScaler.ScaleAndFadeOut(() => { resumeButtonScaler.transform.DOKill(); });
+        resumeButtonScaler.ScaleAndFadeOut(() => { resumeButtonScaler.transform.DOKill(); });
     }
 
     public void OnPauseGame()
@@ -39,6 +37,7 @@ public class InGameUI : MonoBehaviour
 
         resumeButtonScaler.gameObject.SetActive(true);
         resumeButtonScaler.ScaleAndFadeIn();
+        UIManager.Instance.bottomMenu.OnShowButtons();
     }
 
     public void OnResumeGame()
@@ -48,5 +47,6 @@ public class InGameUI : MonoBehaviour
         pauseButtonScaler.ScaleAndFadeIn();
 
         resumeButtonScaler.ScaleAndFadeOut();
+        UIManager.Instance.bottomMenu.OnHideButtons();
     }
 }

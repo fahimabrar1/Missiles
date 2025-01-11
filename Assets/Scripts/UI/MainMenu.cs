@@ -8,12 +8,17 @@ public class MainMenu : MonoBehaviour
     public SlideTransition gameBannerSlider;
     public SlideTransition cloudSlider;
 
-    private void Start()
+    public void Start()
     {
         scoreSlider.SlideIn();
         gameBannerSlider.SlideIn();
         cloudSlider.SlideIn();
         playButtonScaler.ScaleAndFadeIn();
+    }
+
+    public void DelayedStart()
+    {
+        Start();
     }
 
     public void OnPlayButtonClicked()

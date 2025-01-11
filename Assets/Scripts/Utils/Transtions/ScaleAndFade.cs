@@ -8,7 +8,7 @@ namespace Transtions
     {
         public CanvasGroup canvasGroup; // Optional: For fading
         public float duration = 1f; // Duration for scaling and fading
-        public float scaleSize = 1; // Scale size
+        public float fadeOutSaleSize = 1; // Scale size
         public Ease scaleEase = Ease.OutElastic; // Ease for scaling
         public Ease fadeEase = Ease.InOutSine; // Ease for fading
 
@@ -42,10 +42,12 @@ namespace Transtions
                 canvasGroup.DOFade(0, duration).SetEase(fadeEase).SetUpdate(true).SetAutoKill(true);
 
 
-            transform.DOScale(Vector3.zero, duration).SetEase(Ease.InBack).SetUpdate(true).SetAutoKill(true)
+            transform.DOScale(new Vector3(fadeOutSaleSize, fadeOutSaleSize, fadeOutSaleSize), duration)
+                .SetEase(scaleEase).SetUpdate(true).SetAutoKill(true)
                 .OnComplete(() =>
                 {
                     gameObject.SetActive(false);
+                    transform.localScale = Vector3.zero;
                     onComplete?.Invoke();
                 });
         }
