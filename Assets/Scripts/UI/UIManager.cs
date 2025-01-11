@@ -19,6 +19,11 @@ public class UIManager : MonoBehaviour
             Destroy(gameObject);
     }
 
+    private void Start()
+    {
+        inGameUIObj.SetActive(false);
+    }
+
     public async void OnStartGame()
     {
         GameManager.Instance.OnStartGame();

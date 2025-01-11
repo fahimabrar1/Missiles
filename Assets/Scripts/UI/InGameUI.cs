@@ -8,13 +8,15 @@ public class InGameUI : MonoBehaviour
 
     private void OnEnable()
     {
-        headerSlider.SlideIn();
         resumeButtonScaler.transform.localScale = Vector3.zero;
         resumeButtonScaler.gameObject.SetActive(false);
+        headerSlider.gameObject.SetActive(true);
+        headerSlider.SlideIn();
     }
 
     private void OnDisable()
     {
+        headerSlider.gameObject.SetActive(false);
         headerSlider.SlideOut();
         resumeButtonScaler.ScaleAndFadeOut();
     }
