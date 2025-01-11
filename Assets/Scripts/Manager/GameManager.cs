@@ -26,5 +26,10 @@ namespace DefaultNamespace
         {
             missileGenerator.enabled = true;
         }
+
+        public void OnGameOver()
+        {
+            missileGenerator.enabled = false;
+        }
     }
 }
