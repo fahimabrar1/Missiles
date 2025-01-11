@@ -8,9 +8,6 @@ using Random = UnityEngine.Random;
 
 public class SkillGenerator : MonoBehaviour
 {
-    [Header("SkillSpawn Settings")] public SkillModel coinPrefab;
-
-    public List<SkillModel> skillPrefabs; // List of skill prefabs (e.g., shield, speed boost)
     public int minRespawn = 10; // Max number of objects in the scene
     public int maxRespawn = 30; // Max number of objects in the scene
 
@@ -20,7 +17,11 @@ public class SkillGenerator : MonoBehaviour
     public float maxRadius = 20f; // Maximum spawn radius
     public Transform playerTransform; // Reference to the player's position
     public IndicatorManager indicatorManager; // Reference to the IndicatorManage
-    private readonly List<GameObject> spawnedObjects = new(); // List of spawned objects
+
+    public List<SkillSo> skills;
+
+    [Header("SkillSpawn Settings")] private readonly List<GameObject> spawnedObjects = new(); // List of spawned objects
+
 
     private void Start()
     {
@@ -33,18 +34,19 @@ public class SkillGenerator : MonoBehaviour
 
         // Randomly decide whether to spawn a coin or a skill
         var isCoin = Random.value < 0.5f; // 50% chance for each
-        var skillModel = isCoin ? coinPrefab : GetRandomSkillPrefab();
+        var skillModel = GetRandomSkillPrefab();
 
         // Generate a random position within the radius
         var spawnPosition = GetRandomPositionWithinRadius();
 
         // Spawn the object
-        var spawnedObject = Instantiate(skillModel.skillPrefab, spawnPosition, Quaternion.identity);
+        var spawnedObject = Instantiate(skillModel.skillModel.skillPrefab, spawnPosition, Quaternion.identity);
 
         spawnedObjects.Add(spawnedObject);
-        var iInddicator = indicatorManager.CreateIndicator(skillModel.indicatorPrefab, spawnedObject.transform);
+        var iInddicator =
+            indicatorManager.CreateIndicator(skillModel.skillModel.indicatorPrefab, spawnedObject.transform);
 
-        if (spawnedObject.TryGetComponent(out SkillPoint skillPoint)) skillPoint.Initialize(iInddicator);
+        if (spawnedObject.TryGetComponent(out SkillPoint skillPoint)) skillPoint.Initialize(iInddicator, skillModel);
         Invoke(nameof(GenerateSkillOrCoin), Random.Range(minRespawn, maxRespawn));
     }
 
@@ -60,14 +62,14 @@ public class SkillGenerator : MonoBehaviour
             return new Vector3(playerTransform.position.x + spawnPosition.x,
                 playerTransform.position.y + spawnPosition.y, 0f);
         }
-        catch (Exception e)
+        catch (Exception)
         {
             return Vector3.zero;
         }
     }
 
-    private SkillModel GetRandomSkillPrefab()
+    private SkillSo GetRandomSkillPrefab()
     {
-        return skillPrefabs[Random.Range(0, skillPrefabs.Count)];
+        return skills[Random.Range(0, skills.Count)];
     }
 }
