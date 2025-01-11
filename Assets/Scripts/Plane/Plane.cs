@@ -1,3 +1,5 @@
+using System;
+using System.Threading.Tasks;
 using DefaultNamespace;
 using UnityEngine;
 
@@ -9,7 +11,10 @@ public class Plane : MonoBehaviour
     public float steer = 20f;
     public float tiltAmount = 15f;
     public GameObject DestroyParticle;
-    public AudioSource DestroySound;
+
+    [Header("Shield")] public GameObject ShieldObject;
+
+    public bool isShieldActivated;
 
     private PlayerInput _playerInput;
     private Rigidbody2D _rb;
@@ -45,22 +50,60 @@ public class Plane : MonoBehaviour
         transform.rotation = tiltRotation;
     }
 
-
-    private void OnTriggerEnter2D(Collider2D collision)
+    public void OnTriggerPlane(Collider2D collision)
     {
-        if (!collision.CompareTag("Missile")) return;
+        MyDebug.Log("Collision detected with the plane");
 
-        // Trigger explosion effect
-        if (DestroyParticle != null) Instantiate(DestroyParticle, transform.position, Quaternion.identity);
+        if (collision.CompareTag("Missile"))
+        {
+            if (isShieldActivated)
+                // Shield is active, let the shield handle it
+                return;
 
-        // Play explosion sound
-        if (DestroySound != null) LevelAudioPlayer.instance.OnPlayAudioByName("explosion-large");
-        GameManager.Instance.OnGameOver();
-        Destroy(gameObject);
+            // Trigger explosion effect
+            if (DestroyParticle != null)
+                Instantiate(DestroyParticle, transform.position, Quaternion.identity);
+
+            LevelAudioPlayer.instance.OnPlayAudioByName("explosion-large");
+
+            // Notify GameManager and destroy plane
+            GameManager.Instance.OnGameOver();
+            Destroy(gameObject);
+        }
+    }
+
+
+    public void OnDetectOnShield(Collider2D collision)
+    {
+        MyDebug.Log("Collision detected with the shield");
+
+        if (collision.CompareTag("Missile"))
+            // Deactivate shield
+            ToggleeShield(false);
+    }
+
+
+    public void ToggleeShield(bool val)
+    {
+        isShieldActivated = val;
+        ShieldObject.SetActive(val);
     }
 
     private Vector2 GetInput()
     {
         return _playerInput.PlayerActions.Movement.ReadValue<Vector2>();
+    }
+
+    public async void SetSpeed(float speed, int duration)
+    {
+        var tempSpeed = this.speed;
+        this.speed = speed;
+        await Task.Delay(1000 * duration);
+        this.speed = tempSpeed;
+    }
+
+    public void GetSkillPoint(int pointValue)
+    {
+        throw new NotImplementedException();
     }
 }
