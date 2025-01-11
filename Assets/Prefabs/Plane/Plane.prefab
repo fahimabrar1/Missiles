@@ -11,12 +11,13 @@ GameObject:
   - component: {fileID: 5186241616202905001}
   - component: {fileID: 2417318222960352398}
   - component: {fileID: 5335767528677487321}
+  - component: {fileID: 8194970434781496557}
+  - component: {fileID: 8715451940392607946}
   - component: {fileID: 6304915210317917623}
   - component: {fileID: 3491209803584527484}
-  - component: {fileID: 8715451940392607946}
   m_Layer: 0
   m_Name: Plane
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -117,34 +118,51 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &6304915210317917623
-MonoBehaviour:
+--- !u!61 &8194970434781496557
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3978477457464973880}
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba8ef749e2530884db7d024d8e3983e0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &3491209803584527484
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3978477457464973880}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0d18c83a523f6474e844adb56862708e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 100
-  speedMultiplier: 2
-  steer: 100
-  tiltAmount: 15
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.1946666, y: 0.878}
+    newSize: {x: 35.84, y: 26.34}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1.1946666, y: 0.878}
+  m_EdgeRadius: 0
 --- !u!82 &8715451940392607946
 AudioSource:
   m_ObjectHideFlags: 0
@@ -241,6 +259,36 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &6304915210317917623
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3978477457464973880}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba8ef749e2530884db7d024d8e3983e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &3491209803584527484
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3978477457464973880}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d18c83a523f6474e844adb56862708e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 100
+  speedMultiplier: 2
+  steer: 100
+  tiltAmount: 15
+  DestroyParticle: {fileID: 2066679354604954902, guid: d51a5036a2c06c34a84a649ee0b95983, type: 3}
+  DestroySound: {fileID: 0}
 --- !u!1 &5390158951956054634
 GameObject:
   m_ObjectHideFlags: 0
