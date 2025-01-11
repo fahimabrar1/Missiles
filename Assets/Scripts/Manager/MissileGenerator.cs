@@ -1,5 +1,6 @@
 using DefaultNamespace;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class MissileGenerator : MonoBehaviour
 {
@@ -10,9 +11,8 @@ public class MissileGenerator : MonoBehaviour
     public float spawnAfterDelay = 6f; // Delay before spawning missiles
     public float spawnInterval = 2f; // Time interval between spawns
     public IndicatorManager indicatorManager; // Reference to the IndicatorManager
-
-
     private Camera _mainCamera;
+    private ComponentPoolManager<HomingMissile> _objectPoolManager;
 
     private void Awake()
     {
@@ -21,15 +21,18 @@ public class MissileGenerator : MonoBehaviour
 
     private void Start()
     {
+        _objectPoolManager = new ComponentPoolManager<HomingMissile>(homingMissilePrefab, 10);
         InvokeRepeating(nameof(SpawnMissile), spawnAfterDelay, spawnInterval);
     }
+
 
     private void SpawnMissile()
     {
         var spawnPosition = GetRandomSpawnPosition();
 
         // Instantiate the missile
-        var missile = Instantiate(homingMissilePrefab, spawnPosition, Quaternion.identity);
+        var missile = _objectPoolManager.Get();
+        missile.transform.SetPositionAndRotation(spawnPosition, Quaternion.identity);
         missile.OnMissileDestroyed += HandleMissileDestroyed;
         missile.Initialize(player);
 

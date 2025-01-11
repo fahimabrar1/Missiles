@@ -10,11 +10,6 @@ namespace Prefabs.Timer
         private float _elapsedTime; // Tracks the time elapsed
         private bool _timerRunning; // Controls whether the timer is running
 
-        private void Start()
-        {
-            StartTimer();
-        }
-
         private void Update()
         {
             if (!_timerRunning) return;
@@ -23,6 +18,11 @@ namespace Prefabs.Timer
 
             // Update the timer display
             UpdateTimerDisplay();
+        }
+
+        public void OnEnable()
+        {
+            StartTimer();
         }
 
         private void UpdateTimerDisplay()

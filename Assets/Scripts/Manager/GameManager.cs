@@ -1,3 +1,4 @@
+using DG.Tweening;
 using UnityEngine;
 
 namespace DefaultNamespace
@@ -14,6 +15,11 @@ namespace DefaultNamespace
                 Instance = this;
             else
                 Destroy(gameObject);
+        }
+
+        private void OnDestroy()
+        {
+            DOTween.KillAll(); // Kills all active tweens
         }
 
         public void OnStartGame()

@@ -54,7 +54,7 @@ public class HomingMissile : MonoBehaviour, IMissile
 
     private void OnDestroy()
     {
-        Indicator.OnDestroyMissile();
+        Indicator?.OnDestroyMissile();
         OnMissileDestroyed?.Invoke(this);
     }
 

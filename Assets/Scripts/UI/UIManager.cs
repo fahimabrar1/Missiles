@@ -1,10 +1,18 @@
+using System.Threading.Tasks;
 using DefaultNamespace;
+using UI;
 using UnityEngine;
 
 public class UIManager : MonoBehaviour
 {
     public static UIManager Instance;
+    public GameObject mainMenuObj;
+    public GameObject bottomMenuObj;
+    public GameObject inGameUIObj;
 
+    public MainMenu mainMenu;
+    public BottomMenu bottomMenu;
+    public InGameUI inGameUI;
 
     private void Awake()
     {
@@ -14,18 +22,19 @@ public class UIManager : MonoBehaviour
             Destroy(gameObject);
     }
 
-    // Start is called before the first frame update
-    private void Start()
+    public async void OnStartGame()
     {
-    }
+        bottomMenu.OnHideButtons();
 
-    // Update is called once per frame
-    private void Update()
-    {
-    }
-
-    public void OnStartGame()
-    {
         GameManager.Instance.OnStartGame();
+        await Task.Delay(2000);
+        inGameUI.OnEnableUI();
+    }
+
+    public void OnReturnToMainMenu()
+    {
+        bottomMenu.OnShowSettings();
+
+        inGameUI.OnDisableUI();
     }
 }
