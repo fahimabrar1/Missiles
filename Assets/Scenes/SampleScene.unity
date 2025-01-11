@@ -7249,6 +7249,14 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 3491209803584527484, guid: a9a1dcfdcaa84054fa96b592e2ae00f2, type: 3}
+      propertyPath: speed
+      value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 3491209803584527484, guid: a9a1dcfdcaa84054fa96b592e2ae00f2, type: 3}
+      propertyPath: steer
+      value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 3491209803584527484, guid: a9a1dcfdcaa84054fa96b592e2ae00f2, type: 3}
       propertyPath: DestroySound
       value: 
       objectReference: {fileID: 0}
