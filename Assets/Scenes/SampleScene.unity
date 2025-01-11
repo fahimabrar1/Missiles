@@ -2768,6 +2768,8 @@ GameObject:
   - component: {fileID: 853015922}
   - component: {fileID: 853015921}
   - component: {fileID: 853015920}
+  - component: {fileID: 853015924}
+  - component: {fileID: 853015923}
   m_Layer: 5
   m_Name: Pausee Button
   m_TagString: Untagged
@@ -2790,10 +2792,10 @@ RectTransform:
   - {fileID: 645188807}
   m_Father: {fileID: 545648311}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0.46105957}
-  m_SizeDelta: {x: 96.0778, y: 96.0778}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 0, y: -61}
+  m_SizeDelta: {x: 96.0778, y: 96.07779}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &853015920
 MonoBehaviour:
@@ -2889,6 +2891,35 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 853015918}
   m_CullTransparentMesh: 1
+--- !u!114 &853015923
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 853015918}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c33c01bf6215426aaeb1ea40b16637f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canvasGroup: {fileID: 853015924}
+  duration: 1
+  scaleSize: 1
+  scaleEase: 24
+  fadeEase: 4
+--- !u!225 &853015924
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 853015918}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &859006130
 GameObject:
   m_ObjectHideFlags: 0

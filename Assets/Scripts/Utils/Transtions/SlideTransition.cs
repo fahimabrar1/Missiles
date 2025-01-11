@@ -33,7 +33,8 @@ namespace Transtions
         /// </summary>
         public void SlideIn()
         {
-            rectTransform.DOAnchorPos(slideInTargetPosition, duration).SetEase(slideEase); // Animate to target position
+            rectTransform.DOAnchorPos(slideInTargetPosition, duration).SetEase(slideEase).SetUpdate(true);
+            ; // Animate to target position
         }
 
         /// <summary>
@@ -41,7 +42,8 @@ namespace Transtions
         /// </summary>
         public void SlideOut()
         {
-            rectTransform.DOAnchorPos(slideOutTargetPosition, duration).SetEase(Ease.InBack); // Animate out
+            rectTransform.DOAnchorPos(slideOutTargetPosition, duration).SetEase(Ease.InBack)
+                .SetUpdate(true); // Animate out
         }
     }
 }

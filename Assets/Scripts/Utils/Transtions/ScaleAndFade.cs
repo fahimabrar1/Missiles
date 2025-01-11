@@ -19,11 +19,12 @@ namespace Transtions
             if (canvasGroup != null)
             {
                 canvasGroup.alpha = 0;
-                canvasGroup.DOFade(1, duration).SetEase(fadeEase);
+                canvasGroup.DOFade(1, duration).SetEase(fadeEase).SetUpdate(true);
             }
 
             transform.localScale = Vector3.zero;
-            transform.DOScale(Vector3.one, duration).SetEase(scaleEase);
+            transform.DOScale(Vector3.one, duration).SetEase(scaleEase).SetUpdate(true);
+            ;
         }
 
         /// <summary>
@@ -31,9 +32,10 @@ namespace Transtions
         /// </summary>
         public void ScaleAndFadeOut()
         {
-            if (canvasGroup != null) canvasGroup.DOFade(0, duration).SetEase(fadeEase);
+            if (canvasGroup != null) canvasGroup.DOFade(0, duration).SetEase(fadeEase).SetUpdate(true);
+            ;
 
-            transform.DOScale(Vector3.zero, duration).SetEase(Ease.InBack)
+            transform.DOScale(Vector3.zero, duration).SetEase(Ease.InBack).SetUpdate(true)
                 .OnComplete(() => gameObject.SetActive(false));
         }
     }
