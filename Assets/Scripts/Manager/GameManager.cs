@@ -6,6 +6,7 @@ namespace DefaultNamespace
     public class GameManager : MonoBehaviour
     {
         public static GameManager Instance;
+        public UIManager UIManager; // Reference to the UIManager
         public MissileGenerator missileGenerator; // Reference to the MissileGenerator
 
 
@@ -30,6 +31,7 @@ namespace DefaultNamespace
         public void OnGameOver()
         {
             missileGenerator.enabled = false;
+            UIManager.ShowGameOverPanel();
         }
     }
 }

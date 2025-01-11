@@ -38,7 +38,7 @@ public class HomingMissile : MonoBehaviour, IMissile
         {
             targetPos = target.position;
         }
-        catch (Exception e)
+        catch (Exception)
         {
             targetPos = _rb.position + Random.insideUnitCircle * randomAreaRadius;
         }

@@ -38,7 +38,7 @@ namespace clouds
                 centerX = Mathf.FloorToInt(player.position.x / chunkSize) + gridWidth / 2;
                 centerY = Mathf.FloorToInt(player.position.y / chunkSize) + gridHeight / 2;
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 centerX = _currentGridCenter.x;
                 centerY = _currentGridCenter.y;
