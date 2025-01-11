@@ -19,12 +19,17 @@ public class MissileGenerator : MonoBehaviour
         _mainCamera = Camera.main;
     }
 
-    private void Start()
+    private void OnEnable()
     {
         _objectPoolManager = new ComponentPoolManager<HomingMissile>(homingMissilePrefab, 10);
         InvokeRepeating(nameof(SpawnMissile), spawnAfterDelay, spawnInterval);
     }
 
+    private void OnDisable()
+    {
+        // Cancel the InvokeRepeating when the script is disabled
+        CancelInvoke(nameof(SpawnMissile));
+    }
 
     private void SpawnMissile()
     {

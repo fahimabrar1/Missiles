@@ -41,4 +41,10 @@ public class UIManager : MonoBehaviour
     {
         inGameUI.ShowGameOverUI();
     }
+
+    public void HideGameOverUI()
+    {
+        inGameUI.HideGameOverUI();
+        OnStartGame();
+    }
 }

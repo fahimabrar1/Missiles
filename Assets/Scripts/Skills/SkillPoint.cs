@@ -24,7 +24,7 @@ namespace Skills
         private void OnDisable()
         {
             // Destroy indicator when this object is disabled
-            if (indicatorInstance != null) indicatorInstance.OnDestroyMissile();
+            indicatorInstance?.OnDestroyIndicatorTarget();
         }
 
         private void OnTriggerEnter2D(Collider2D other)

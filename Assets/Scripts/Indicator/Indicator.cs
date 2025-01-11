@@ -50,7 +50,7 @@ namespace Indicator
             _indicator = GetComponent<RectTransform>();
         }
 
-        public void OnDestroyMissile()
+        public void OnDestroyIndicatorTarget()
         {
             Destroy(gameObject);
         }

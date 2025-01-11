@@ -3384,6 +3384,7 @@ MonoBehaviour:
   pauseButtonScaler: {fileID: 853015923}
   headerSlider: {fileID: 545648312}
   gameOverScaler: {fileID: 1260612717}
+  playAgainScaler: {fileID: 1848259909}
   row1Scaler: {fileID: 559372456}
   row2Scaler: {fileID: 1119414488}
   row3Scaler: {fileID: 1692065871}
@@ -3721,8 +3722,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 172ff5f6a4574f69b573fcb6347d96a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  UIManager: {fileID: 1498554162}
+  uiManager: {fileID: 1498554162}
   missileGenerator: {fileID: 755546408}
+  skillGenerator: {fileID: 428628438}
+  plane: {fileID: 1958227756}
+  score: 0
 --- !u!4 &981524104
 Transform:
   m_ObjectHideFlags: 0
@@ -4485,9 +4489,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canvasGroup: {fileID: 1260612718}
   duration: 0.5
-  fadeOutSaleSize: 3
-  scaleEase: 24
-  fadeEase: 4
+  fadeOutSaleSize: 2
+  scaleEase: 21
+  fadeEase: 21
 --- !u!225 &1260612718
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -4498,7 +4502,7 @@ CanvasGroup:
   m_Enabled: 1
   m_Alpha: 0
   m_Interactable: 1
-  m_BlocksRaycasts: 0
+  m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
 --- !u!1001 &1281872747
 PrefabInstance:
@@ -6452,6 +6456,8 @@ GameObject:
   - component: {fileID: 1848259908}
   - component: {fileID: 1848259907}
   - component: {fileID: 1848259906}
+  - component: {fileID: 1848259910}
+  - component: {fileID: 1848259909}
   m_Layer: 5
   m_Name: Play Button
   m_TagString: Untagged
@@ -6535,6 +6541,18 @@ MonoBehaviour:
           m_StringArgument: ui-click
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 981524103}
+        m_TargetAssemblyTypeName: DefaultNamespace.GameManager, Assembly-CSharp
+        m_MethodName: OnPlayAgain
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1848259907
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6573,6 +6591,35 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1848259904}
   m_CullTransparentMesh: 1
+--- !u!114 &1848259909
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1848259904}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c33c01bf6215426aaeb1ea40b16637f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canvasGroup: {fileID: 1848259910}
+  duration: 1
+  fadeOutSaleSize: 1
+  scaleEase: 24
+  fadeEase: 4
+--- !u!225 &1848259910
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1848259904}
+  m_Enabled: 1
+  m_Alpha: 0
+  m_Interactable: 1
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1 &1864338793
 GameObject:
   m_ObjectHideFlags: 0
@@ -6870,6 +6917,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1954743500}
   m_CullTransparentMesh: 1
+--- !u!1 &1958227756 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3978477457464973880, guid: a9a1dcfdcaa84054fa96b592e2ae00f2, type: 3}
+  m_PrefabInstance: {fileID: 3705191948690426385}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1981037219
 GameObject:
   m_ObjectHideFlags: 0

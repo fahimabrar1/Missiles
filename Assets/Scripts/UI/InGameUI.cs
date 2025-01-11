@@ -12,7 +12,7 @@ public class InGameUI : MonoBehaviour
     public SlideTransition headerSlider;
 
     [Header("Game Over")] public ScaleAndFade gameOverScaler;
-
+    public ScaleAndFade playAgainScaler;
     public ScaleAndFade row1Scaler;
     public ScaleAndFade row2Scaler;
     public ScaleAndFade row3Scaler;
@@ -64,7 +64,9 @@ public class InGameUI : MonoBehaviour
 
     public async void ShowGameOverUI()
     {
-        CaculateGameScore();
+        pauseButtonScaler.ScaleAndFadeOut();
+
+        CalculateGameScore();
         gameOverScaler.ScaleAndFadeIn();
         await Task.Delay(2000);
         row1Scaler.ScaleAndFadeIn();
@@ -72,10 +74,23 @@ public class InGameUI : MonoBehaviour
         row2Scaler.ScaleAndFadeIn();
         await Task.Delay(500);
         row3Scaler.ScaleAndFadeIn();
+        await Task.Delay(1000);
+        playAgainScaler.ScaleAndFadeIn();
         UIManager.Instance.bottomMenu.OnShowButtons();
     }
 
-    private void CaculateGameScore()
+    public void HideGameOverUI()
+    {
+        gameOverScaler.ScaleAndFadeOut();
+        row1Scaler.ScaleAndFadeOut();
+
+        row2Scaler.ScaleAndFadeOut();
+
+        row3Scaler.ScaleAndFadeOut();
+        playAgainScaler.ScaleAndFadeOut();
+    }
+
+    private void CalculateGameScore()
     {
         Stopwatch.StopTimer();
         var totalSecond = Stopwatch.GetSeconds();

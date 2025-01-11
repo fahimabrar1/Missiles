@@ -1,4 +1,3 @@
-using System;
 using System.Threading.Tasks;
 using DefaultNamespace;
 using UnityEngine;
@@ -68,7 +67,7 @@ public class Plane : MonoBehaviour
 
             // Notify GameManager and destroy plane
             GameManager.Instance.OnGameOver();
-            Destroy(gameObject);
+            gameObject.SetActive(false);
         }
     }
 
@@ -104,6 +103,6 @@ public class Plane : MonoBehaviour
 
     public void GetSkillPoint(int pointValue)
     {
-        throw new NotImplementedException();
+        GameManager.Instance.OnAddScore(pointValue);
     }
 }
