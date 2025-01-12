@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using Interfaces;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -13,7 +14,7 @@ public class HomingMissile : MonoBehaviour, IMissile
     [SerializeField] private float randomAreaRadius = 10f; // Radius for random position
     private Rigidbody2D _rb;
     public IIndicator Indicator;
-    public Action<HomingMissile> OnMissileDestroyed;
+    private MissileGenerator missileGenerator;
     private Vector2 randomTargetPosition;
 
     private void Awake()
@@ -26,8 +27,7 @@ public class HomingMissile : MonoBehaviour, IMissile
 
     private void Start()
     {
-        // Destroy the missile after 10 seconds if it doesn't hit anything
-        Destroy(gameObject, 10f);
+        StartCoroutine(nameof(RecycleAfterNSec));
     }
 
 
@@ -63,10 +63,9 @@ public class HomingMissile : MonoBehaviour, IMissile
     }
 
 
-    private void OnDestroy()
+    private void OnDisable()
     {
         Indicator?.OnDestroyIndicatorTarget();
-        OnMissileDestroyed?.Invoke(this);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -75,18 +74,29 @@ public class HomingMissile : MonoBehaviour, IMissile
         if (collision.CompareTag("Player") || collision.CompareTag("Missile"))
         {
             // Trigger explosion effect
-            if (explosionPrefab != null) Instantiate(explosionPrefab, transform.position, Quaternion.identity);
+            if (explosionPrefab != null)
+            {
+                var explosion = Instantiate(explosionPrefab, transform.position, Quaternion.identity);
+                Destroy(explosion, 5);
+            }
 
             LevelAudioPlayer.instance.OnPlayAudioByName("explosion-small");
 
 
-            Destroy(gameObject);
+            missileGenerator.ReturnToPool(this);
         }
     }
 
 
-    public void Initialize(Transform target)
+    public void Initialize(Transform target, MissileGenerator missileGenerator)
     {
         this.target = target;
+        this.missileGenerator = missileGenerator;
+    }
+
+    private IEnumerator RecycleAfterNSec()
+    {
+        yield return new WaitForSeconds(10);
+        missileGenerator.ReturnToPool(this);
     }
 }

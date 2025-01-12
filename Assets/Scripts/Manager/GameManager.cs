@@ -11,7 +11,6 @@ namespace DefaultNamespace
         public SkillGenerator skillGenerator; // Reference to the MissileGenerator
         public GameObject plane;
 
-        public int score;
 
         private void Awake()
         {
@@ -28,7 +27,6 @@ namespace DefaultNamespace
 
         public void OnStartGame()
         {
-            score = 0;
             missileGenerator.enabled = true;
             skillGenerator.enabled = true;
         }
@@ -42,14 +40,14 @@ namespace DefaultNamespace
 
         public void OnGameOver()
         {
-            missileGenerator.enabled = false;
+            missileGenerator.DestroyAllMissilesAndDeactivate();
             skillGenerator.enabled = false;
             uiManager.ShowGameOverPanel();
         }
 
         public void OnAddScore(int pointValue)
         {
-            score += pointValue;
+            UIManager.Instance.inGameUI.UpdateScore(pointValue);
         }
     }
 }
