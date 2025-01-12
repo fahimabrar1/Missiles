@@ -1,4 +1,4 @@
-using System.Threading.Tasks;
+using System.Collections;
 using DefaultNamespace;
 using UI;
 using UnityEngine;
@@ -6,10 +6,6 @@ using UnityEngine;
 public class UIManager : MonoBehaviour
 {
     public static UIManager Instance;
-    public GameObject mainMenuObj;
-    public GameObject bottomMenuObj;
-    public GameObject inGameUIObj;
-
     public MainMenu mainMenu;
     public BottomMenu bottomMenu;
     public InGameUI inGameUI;
@@ -24,13 +20,18 @@ public class UIManager : MonoBehaviour
             Destroy(gameObject);
     }
 
-    public async void OnStartGame()
+    public void OnStartGame()
     {
-        bottomMenu.OnHideButtons();
-        GameManager.Instance.OnStartGame();
-        await Task.Delay(2000);
-        joyStick.SetActive(true);
-        inGameUI.OnEnableUI();
+        StartCoroutine(onStartGame());
+
+        IEnumerator onStartGame()
+        {
+            bottomMenu.OnHideButtons();
+            GameManager.Instance.OnStartGame();
+            yield return new WaitForSeconds(2);
+            joyStick.SetActive(true);
+            inGameUI.OnEnableUI();
+        }
     }
 
     public void OnReturnToMainMenu()

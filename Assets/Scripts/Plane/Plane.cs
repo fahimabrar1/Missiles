@@ -1,4 +1,4 @@
-using System.Threading.Tasks;
+using System.Collections;
 using DefaultNamespace;
 using UnityEngine;
 
@@ -10,7 +10,7 @@ public class Plane : MonoBehaviour
     public float steer = 20f;
     public float tiltAmount = 15f;
     public GameObject DestroyParticle;
-
+    public VariableJoystick VariableJoystick;
     [Header("Shield")] public GameObject ShieldObject;
 
     public bool isShieldActivated;
@@ -46,6 +46,7 @@ public class Plane : MonoBehaviour
         // Apply tilt for visual effect
         var tilt = -input.x * tiltAmount; // Negative for correct tilt direction
         var tiltRotation = Quaternion.Euler(0, tilt, currentRotation.eulerAngles.z + rotation);
+        Debug.Log("Roota:" + tilt);
         transform.rotation = tiltRotation;
     }
 
@@ -91,15 +92,21 @@ public class Plane : MonoBehaviour
 
     private Vector2 GetInput()
     {
-        return _playerInput.PlayerActions.Movement.ReadValue<Vector2>();
+        return VariableJoystick.Direction;
+        // return _playerInput.PlayerActions.Movement.ReadValue<Vector2>();
     }
 
-    public async void SetSpeed(float speed, int duration)
+    public void SetSpeed(float speed, int duration)
     {
-        var tempSpeed = this.speed;
-        this.speed = speed;
-        await Task.Delay(1000 * duration);
-        this.speed = tempSpeed;
+        StartCoroutine(setSpeed());
+
+        IEnumerator setSpeed()
+        {
+            var tempSpeed = this.speed;
+            this.speed = speed;
+            yield return new WaitForSeconds(duration);
+            this.speed = tempSpeed;
+        }
     }
 
     public void GetSkillPoint(int pointValue)
