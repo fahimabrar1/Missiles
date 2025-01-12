@@ -17,7 +17,6 @@ namespace UI
 
         public void OnClicSettingsButton()
         {
-            settingsPanel.gameObject.SetActive(true);
             settingsPanel.ScaleAndFadeIn();
         }
 
@@ -41,6 +40,12 @@ namespace UI
         public void OnShowButtons()
         {
             homeButtonObj.SetActive(true);
+            bottomMenuSlider.SlideIn();
+        }
+
+        public void OnShowSettingsButtons()
+        {
+            homeButtonObj.SetActive(false);
             bottomMenuSlider.SlideIn();
         }
     }

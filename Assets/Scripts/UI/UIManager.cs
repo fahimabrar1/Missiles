@@ -33,8 +33,12 @@ public class UIManager : MonoBehaviour
 
     public void OnReturnToMainMenu()
     {
-        bottomMenu.OnShowSettings();
+        Time.timeScale = 1;
+        GameManager.Instance.plane.SetActive(true);
+        bottomMenu.OnShowSettingsButtons();
+        inGameUI.HideGameOverUI();
         inGameUI.OnDisableUI();
+        mainMenu.OnShowMainMenu();
     }
 
     public void ShowGameOverPanel()
