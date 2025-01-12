@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Interfaces;
 using UnityEngine;
 
@@ -7,6 +8,7 @@ namespace DefaultNamespace
     {
         public Transform indicatorParent; // Parent transform for the indicators
         public Camera mainCamera; // Reference to the main camera
+        public List<IIndicator> activeIndicators = new();
 
         private void Awake()
         {
@@ -29,10 +31,16 @@ namespace DefaultNamespace
             // Instantiate the indicator
             var indicator = Instantiate(indicatorPrefab, Vector3.zero, Quaternion.identity, indicatorParent);
             var indicatorScript = indicator.GetComponent<IIndicator>();
-
+            activeIndicators.Add(indicatorScript);
             indicatorScript?.Initialize(target, mainCamera);
 
             return indicatorScript;
+        }
+
+        public void DestroyAllIndicators()
+        {
+            foreach (var t in activeIndicators)
+                t.OnDestroyIndicatorTarget();
         }
     }
 }

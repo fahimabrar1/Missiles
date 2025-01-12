@@ -23,6 +23,7 @@ namespace Transtions
         /// </summary>
         public void ScaleAndFadeIn()
         {
+            gameObject.SetActive(true);
             if (canvasGroup != null)
             {
                 canvasGroup.alpha = 0;

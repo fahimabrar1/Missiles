@@ -50,5 +50,10 @@ namespace Prefabs.Timer
             _elapsedTime = 0f;
             UpdateTimerDisplay();
         }
+
+        public int GetSeconds()
+        {
+            return Mathf.FloorToInt(_elapsedTime);
+        }
     }
 }

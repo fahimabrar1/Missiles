@@ -1,11 +1,9 @@
-using Indicator;
 using UnityEngine;
 
 namespace Interfaces
 {
     public interface IMissile
     {
-        void Initialize(Transform target);
+        void Initialize(Transform target, MissileGenerator missileGenerator);
     }
-
 }

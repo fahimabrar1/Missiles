@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace clouds
@@ -30,8 +31,19 @@ namespace clouds
         private Vector2Int GetGridCenterFromPlayer()
         {
             // Calculate the current grid center based on the player's position
-            var centerX = Mathf.FloorToInt(player.position.x / chunkSize) + gridWidth / 2;
-            var centerY = Mathf.FloorToInt(player.position.y / chunkSize) + gridHeight / 2;
+            int centerX, centerY;
+
+            try
+            {
+                centerX = Mathf.FloorToInt(player.position.x / chunkSize) + gridWidth / 2;
+                centerY = Mathf.FloorToInt(player.position.y / chunkSize) + gridHeight / 2;
+            }
+            catch (Exception)
+            {
+                centerX = _currentGridCenter.x;
+                centerY = _currentGridCenter.y;
+            }
+
             return new Vector2Int(centerX, centerY);
         }
 

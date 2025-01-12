@@ -1,3 +1,4 @@
+using System;
 using Interfaces;
 using UnityEngine;
 using UnityEngine.UI;
@@ -50,9 +51,15 @@ namespace Indicator
             _indicator = GetComponent<RectTransform>();
         }
 
-        public void OnDestroyMissile()
+        public void OnDestroyIndicatorTarget()
         {
-            Destroy(gameObject);
+            try
+            {
+                Destroy(gameObject);
+            }
+            catch (Exception)
+            {
+            }
         }
     }
 }

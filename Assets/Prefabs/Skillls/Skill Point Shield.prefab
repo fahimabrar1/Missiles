@@ -99,7 +99,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: baf68612a6991464eb56a9eb66947274, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillPointType: 1
+  skillPointType: 0
   bodySpriteRenderer: {fileID: 7396763238151445443}
   iconSpriteRenderer: {fileID: 3144909794890805352}
 --- !u!58 &3338537407274219871
