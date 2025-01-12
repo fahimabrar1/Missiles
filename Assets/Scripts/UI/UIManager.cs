@@ -13,6 +13,7 @@ public class UIManager : MonoBehaviour
     public MainMenu mainMenu;
     public BottomMenu bottomMenu;
     public InGameUI inGameUI;
+    public GameObject joyStick;
 
 
     private void Awake()
@@ -28,11 +29,13 @@ public class UIManager : MonoBehaviour
         bottomMenu.OnHideButtons();
         GameManager.Instance.OnStartGame();
         await Task.Delay(2000);
+        joyStick.SetActive(true);
         inGameUI.OnEnableUI();
     }
 
     public void OnReturnToMainMenu()
     {
+        joyStick.SetActive(false);
         Time.timeScale = 1;
         GameManager.Instance.plane.SetActive(true);
         bottomMenu.OnShowSettingsButtons();
@@ -43,6 +46,7 @@ public class UIManager : MonoBehaviour
 
     public void ShowGameOverPanel()
     {
+        joyStick.SetActive(false);
         inGameUI.ShowGameOverUI();
     }
 

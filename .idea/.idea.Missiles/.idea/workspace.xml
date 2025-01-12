@@ -6,16 +6,13 @@
   <component name="ChangeListManager">
     <list default="true" id="7503ae66-8dc8-4153-bc80-f7fd65bde027" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Missiles/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Missiles/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Others/Input Actons/Characters/Player/PlayerInputActions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Others/Input Actons/Characters/Player/PlayerInputActions.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Others/Input Actons/Characters/Player/PlayerInputActions.inputactions" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Others/Input Actons/Characters/Player/PlayerInputActions.inputactions" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Indicator/Indicator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Indicator/Indicator.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Interfaces/IMissile.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Interfaces/IMissile.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/BottomMenu.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/BottomMenu.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/InGameUI.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/InGameUI.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/MainMenu.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/MainMenu.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Plane/Plane.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Plane/Plane.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/UIManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/UIManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Utils/Transtions/ScaleAndFade.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Utils/Transtions/ScaleAndFade.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples &amp; Extras/Resources/Fonts &amp; Materials/Bangers SDF.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples &amp; Extras/Resources/Fonts &amp; Materials/Bangers SDF.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -123,7 +120,8 @@
       <workItem from="1736508334227" duration="2628000" />
       <workItem from="1736538356039" duration="4268000" />
       <workItem from="1736573368251" duration="34134000" />
-      <workItem from="1736660335914" duration="7966000" />
+      <workItem from="1736660335914" duration="9149000" />
+      <workItem from="1736707605291" duration="2523000" />
     </task>
     <servers />
   </component>

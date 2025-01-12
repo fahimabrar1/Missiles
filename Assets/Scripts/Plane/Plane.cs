@@ -49,6 +49,7 @@ public class Plane : MonoBehaviour
         transform.rotation = tiltRotation;
     }
 
+
     public void OnTriggerPlane(Collider2D collision)
     {
         MyDebug.Log("Collision detected with the plane");
