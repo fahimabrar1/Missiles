@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <meta charset="utf-8">
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+    <title>{{{ PRODUCT_NAME }}}</title>
+    <meta content="width=device-width, initial-scale=1.0, user-scalable=no, shrink-to-fit=yes" name="viewport">
+
+    <style>
+        /* General reset for the body */
+        body {
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            background: {
+        {
+        {
+            BACKGROUND_FILENAME ? 'url(\'Build/' +BACKGROUND_FILENAME . replace(/ '/g, '% 27 ') + ' \') center / cover ' : BACKGROUND_COLOR }}};
+        }
+
+            /* Center the canvas with fixed aspect ratio */
+
+            #unity-container {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 100vw;
+                height: 100vh;
+                overflow: hidden;
+            }
+
+            #unity-canvas {
+                position: absolute;
+                max-height: 100%;
+                max-width: 100%;
+                aspect-ratio: 9 / 16;
+            }
+    </style>
+</head>
+
+<body>
+<div id="unity-container">
+    <canvas
+            height="{{{ HEIGHT }}}"
+            id="unity-canvas"
+            tabindex="-1"
+            width="{{{ WIDTH }}}"
+    ></canvas>
+</div>
+
+<script src="Build/{{{ LOADER_FILENAME }}}"></script>
+<script>
+    // Adjust canvas style for mobile devices
+    if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
+        const canvas = document.querySelector("#unity-canvas");
+
+        // Ensure the canvas fills the screen but maintains 9:16 aspect ratio
+        const resizeCanvas = () => {
+            const screenWidth = window.innerWidth;
+            const screenHeight = window.innerHeight;
+            const aspectRatio = 9 / 16;
+
+            if (screenWidth / screenHeight < aspectRatio) {
+                canvas.style.width = `${screenWidth}px`;
+                canvas.style.height = `${screenWidth / aspectRatio}px`;
+            } else {
+                canvas.style.height = `${screenHeight}px`;
+                canvas.style.width = `${screenHeight * aspectRatio}px`;
+            }
+        };
+
+        window.addEventListener("resize", resizeCanvas);
+        resizeCanvas(); // Initial resize
+    }
+
+    // Unity instance creation
+    createUnityInstance(document.querySelector("#unity-canvas"), {
+        dataUrl: "Build/{{{ DATA_FILENAME }}}",
+        frameworkUrl: "Build/{{{ FRAMEWORK_FILENAME }}}",
+        #if USE_THREADS
+        workerUrl: "Build/{{{ WORKER_FILENAME }}}",
+        #endif
+        #if USE_WASM
+        codeUrl: "Build/{{{ CODE_FILENAME }}}",
+        #endif
+        #if MEMORY_FILENAME
+        memoryUrl: "Build/{{{ MEMORY_FILENAME }}}",
+        #endif
+        #if SYMBOLS_FILENAME
+        symbolsUrl: "Build/{{{ SYMBOLS_FILENAME }}}",
+        #endif
+        streamingAssetsUrl: "StreamingAssets",
+        companyName: {
+    {
+        {
+            JSON.stringify(COMPANY_NAME)
+        }
+    }
+    },
+    {
+        {
+            {
+                JSON.stringify(PRODUCT_NAME)
+            }
+        }
+    }
+    ,
+    {
+        {
+            {
+                JSON.stringify(PRODUCT_VERSION)
+            }
+        }
+    }
+    ,
+    // matchWebGLToCanvasSize: false, // Uncomment this to separately control WebGL canvas render size and DOM element size.
+    // devicePixelRatio: 1, // Uncomment this to override low DPI rendering on high DPI displays.
+    })
+</script>
+</body>
+</html>
