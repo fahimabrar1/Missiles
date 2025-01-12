@@ -1,3 +1,4 @@
+using System;
 using Interfaces;
 using UnityEngine;
 using UnityEngine.UI;
@@ -52,7 +53,13 @@ namespace Indicator
 
         public void OnDestroyIndicatorTarget()
         {
-            Destroy(gameObject);
+            try
+            {
+                Destroy(gameObject);
+            }
+            catch (Exception)
+            {
+            }
         }
     }
 }
