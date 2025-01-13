@@ -1,4 +1,4 @@
-using System.Threading.Tasks;
+using System.Collections;
 using DG.Tweening;
 using Prefabs.Timer;
 using TMPro;
@@ -10,6 +10,7 @@ public class InGameUI : MonoBehaviour
     public ScaleAndFade resumeButtonScaler;
     public ScaleAndFade pauseButtonScaler;
     public SlideTransition headerSlider;
+    public GameObject joyStick;
 
     [Header("Game Over")] public GameObject gameOverPanel;
 
@@ -38,6 +39,8 @@ public class InGameUI : MonoBehaviour
     public void OnEnableUI()
     {
         Score = 0;
+        joyStick.SetActive(true);
+
         Stopwatch.StartTimer();
         pauseButtonScaler.ScaleAndFadeIn();
 
@@ -63,7 +66,7 @@ public class InGameUI : MonoBehaviour
     {
         Time.timeScale = 0;
         pauseButtonScaler.ScaleAndFadeOut();
-
+        joyStick.SetActive(false);
         resumeButtonScaler.gameObject.SetActive(true);
         resumeButtonScaler.ScaleAndFadeIn();
         UIManager.Instance.bottomMenu.OnShowButtons();
@@ -72,6 +75,8 @@ public class InGameUI : MonoBehaviour
     public void OnResumeGame()
     {
         Time.timeScale = 1;
+        joyStick.SetActive(true);
+
         pauseButtonScaler.gameObject.SetActive(true);
         pauseButtonScaler.ScaleAndFadeIn();
 
@@ -79,37 +84,49 @@ public class InGameUI : MonoBehaviour
         UIManager.Instance.bottomMenu.OnHideButtons();
     }
 
-    public async void ShowGameOverUI()
+    public void ShowGameOverUI()
     {
-        gameOverPanel.SetActive(true);
-        pauseButtonScaler.ScaleAndFadeOut();
-        playAgainScaler.gameObject.SetActive(false);
-        CalculateGameScore();
-        gameOverScaler.ScaleAndFadeIn();
-        await Task.Delay(2000);
-        row1Scaler.ScaleAndFadeIn();
-        await Task.Delay(500);
-        row2Scaler.ScaleAndFadeIn();
-        await Task.Delay(500);
-        row3Scaler.ScaleAndFadeIn();
-        await Task.Delay(1000);
-        playAgainScaler.gameObject.SetActive(true);
-        playAgainScaler.ScaleAndFadeIn();
-        UIManager.Instance.bottomMenu.OnShowButtons();
+        StartCoroutine(showGameOverUI());
+
+        IEnumerator showGameOverUI()
+        {
+            joyStick.SetActive(false);
+            gameOverPanel.SetActive(true);
+            pauseButtonScaler.ScaleAndFadeOut();
+            playAgainScaler.gameObject.SetActive(false);
+            CalculateGameScore();
+            gameOverScaler.ScaleAndFadeIn();
+            yield return new WaitForSeconds(2f);
+            row1Scaler.ScaleAndFadeIn();
+            yield return new WaitForSeconds(0.5f);
+            row2Scaler.ScaleAndFadeIn();
+            yield return new WaitForSeconds(0.5f);
+            row3Scaler.ScaleAndFadeIn();
+            yield return new WaitForSeconds(1);
+            playAgainScaler.gameObject.SetActive(true);
+            playAgainScaler.ScaleAndFadeIn();
+            UIManager.Instance.bottomMenu.OnShowButtons();
+        }
     }
 
-    public async void HideGameOverUI()
+    public void HideGameOverUI()
     {
-        ResetAllScores();
-        gameOverScaler.ScaleAndFadeOut();
-        row1Scaler.ScaleAndFadeOut();
+        StartCoroutine(hideGameOverUI());
 
-        row2Scaler.ScaleAndFadeOut();
+        IEnumerator hideGameOverUI()
+        {
+            joyStick.SetActive(false);
+            ResetAllScores();
+            gameOverScaler.ScaleAndFadeOut();
+            row1Scaler.ScaleAndFadeOut();
 
-        row3Scaler.ScaleAndFadeOut();
-        playAgainScaler.ScaleAndFadeOut();
-        await Task.Delay(1000);
-        gameOverPanel.SetActive(false);
+            row2Scaler.ScaleAndFadeOut();
+
+            row3Scaler.ScaleAndFadeOut();
+            playAgainScaler.ScaleAndFadeOut();
+            yield return new WaitForSeconds(1);
+            gameOverPanel.SetActive(false);
+        }
     }
 
     private void ResetAllScores()

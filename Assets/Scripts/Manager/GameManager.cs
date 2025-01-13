@@ -20,6 +20,11 @@ namespace DefaultNamespace
                 Destroy(gameObject);
         }
 
+        private void Start()
+        {
+            Application.targetFrameRate = 60;
+        }
+
         private void OnDestroy()
         {
             DOTween.KillAll(); // Kills all active tweens
@@ -27,6 +32,7 @@ namespace DefaultNamespace
 
         public void OnStartGame()
         {
+            skillGenerator.DestroyAllSkills();
             missileGenerator.enabled = true;
             skillGenerator.enabled = true;
         }
@@ -36,6 +42,7 @@ namespace DefaultNamespace
             plane.SetActive(true);
             OnStartGame();
             uiManager.HideGameOverUI();
+            skillGenerator.DestroyAllSkills();
         }
 
         public void OnGameOver()
@@ -43,6 +50,7 @@ namespace DefaultNamespace
             missileGenerator.DestroyAllMissilesAndDeactivate();
             skillGenerator.enabled = false;
             uiManager.ShowGameOverPanel();
+            skillGenerator.DestroyAllSkills();
         }
 
         public void OnAddScore(int pointValue)

@@ -17,7 +17,6 @@ public class SkillGenerator : MonoBehaviour
     public IndicatorManager indicatorManager; // Reference to the IndicatorManage
 
     public List<SkillSo> skills;
-
     [Header("SkillSpawn Settings")] private readonly List<GameObject> spawnedObjects = new(); // List of spawned objects
 
 
@@ -75,5 +74,17 @@ public class SkillGenerator : MonoBehaviour
     private SkillSo GetRandomSkillPrefab()
     {
         return skills[Random.Range(0, skills.Count)];
+    }
+
+    public void ConsumedSkill(SkillPoint skillPoint)
+    {
+        spawnedObjects.Remove(skillPoint.gameObject);
+        Destroy(skillPoint.gameObject);
+    }
+
+    public void DestroyAllSkills()
+    {
+        for (var i = spawnedObjects.Count - 1; i >= 0; i--) Destroy(spawnedObjects[i].gameObject);
+        spawnedObjects.Clear();
     }
 }
