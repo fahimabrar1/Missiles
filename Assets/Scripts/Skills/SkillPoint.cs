@@ -1,3 +1,4 @@
+using DefaultNamespace;
 using Interfaces;
 using Interfaces.Skills;
 using UnityEngine;
@@ -33,7 +34,8 @@ namespace Skills
             {
                 MyDebug.Log("SkillPoint OnTriggerEnter2D");
                 ApplySkill(other.GetComponentInParent<Plane>());
-                Destroy(gameObject);
+                // Destroy(gameObject);
+                GameManager.Instance.skillGenerator.ConsumedSkill(this);
             }
         }
 

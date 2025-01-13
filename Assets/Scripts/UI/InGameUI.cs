@@ -10,6 +10,7 @@ public class InGameUI : MonoBehaviour
     public ScaleAndFade resumeButtonScaler;
     public ScaleAndFade pauseButtonScaler;
     public SlideTransition headerSlider;
+    public GameObject joyStick;
 
     [Header("Game Over")] public GameObject gameOverPanel;
 
@@ -38,6 +39,8 @@ public class InGameUI : MonoBehaviour
     public void OnEnableUI()
     {
         Score = 0;
+        joyStick.SetActive(true);
+
         Stopwatch.StartTimer();
         pauseButtonScaler.ScaleAndFadeIn();
 
@@ -63,7 +66,7 @@ public class InGameUI : MonoBehaviour
     {
         Time.timeScale = 0;
         pauseButtonScaler.ScaleAndFadeOut();
-
+        joyStick.SetActive(false);
         resumeButtonScaler.gameObject.SetActive(true);
         resumeButtonScaler.ScaleAndFadeIn();
         UIManager.Instance.bottomMenu.OnShowButtons();
@@ -72,6 +75,8 @@ public class InGameUI : MonoBehaviour
     public void OnResumeGame()
     {
         Time.timeScale = 1;
+        joyStick.SetActive(true);
+
         pauseButtonScaler.gameObject.SetActive(true);
         pauseButtonScaler.ScaleAndFadeIn();
 
@@ -85,6 +90,7 @@ public class InGameUI : MonoBehaviour
 
         IEnumerator showGameOverUI()
         {
+            joyStick.SetActive(false);
             gameOverPanel.SetActive(true);
             pauseButtonScaler.ScaleAndFadeOut();
             playAgainScaler.gameObject.SetActive(false);
@@ -109,6 +115,7 @@ public class InGameUI : MonoBehaviour
 
         IEnumerator hideGameOverUI()
         {
+            joyStick.SetActive(false);
             ResetAllScores();
             gameOverScaler.ScaleAndFadeOut();
             row1Scaler.ScaleAndFadeOut();
