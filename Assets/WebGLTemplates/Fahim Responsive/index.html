@@ -1,86 +1,147 @@
 <!DOCTYPE html>
 <html lang="en-us">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>{{{ PRODUCT_NAME }}}</title>
-    <style>
-      body {
-        text-align: center;
-        padding: 0;
-        border: 0;
-        margin: 0;
-        background: #231F20;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-        overflow: hidden;
-      }
-      #unity-container {
-        position: relative;
-        width: 100%;
-        height: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-      }
-      #unity-canvas {
-        background: #231F20;
-      }
-    </style>
-  </head>
-  <body>
-    <div id="unity-container">
-      <canvas id="unity-canvas" width={{{ WIDTH }}} height={{{ HEIGHT }}} tabindex="-1" style="width: {{{ WIDTH }}}px; height: {{{ HEIGHT }}}px; background: {{{ BACKGROUND_FILENAME ? 'url(\'Build/' + BACKGROUND_FILENAME.replace(/'/g, '%27') + '\') center / cover' : BACKGROUND_COLOR }}}"></canvas>
-    </div>
-    <script src="Build/{{{ LOADER_FILENAME }}}"></script>
-    <script>
-      function resizeCanvas() {
-        var canvas = document.querySelector("#unity-canvas");
-        var container = document.querySelector("#unity-container");
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>{{{ PRODUCT_NAME }}}</title>
+  <style>
+    body {
+      text-align: center;
+      padding: 0;
+      border: 0;
+      margin: 0;
+      background: #231F20;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+    }
+    #unity-container {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    #unity-canvas {
+      background: #231F20;
+    }
+    #unity-loading-bar {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 90%;
+      height: 20px;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    #unity-progress-bar-full {
+      width: 0;
+      height: 100%;
+      background: #4caf50;
+    }
+    #unity-warning {
+      position: absolute;
+      top: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: red;
+      color: white;
+      padding: 10px;
+      border-radius: 5px;
+      display: none;
+      z-index: 10;
+    }
+  </style>
+</head>
+<body>
+<div id="unity-container">
+  <canvas id="unity-canvas" width={{{ WIDTH }}} height={{{ HEIGHT }}} tabindex="-1" style="width: {{{ WIDTH }}}px; height: {{{ HEIGHT }}}px; background: {{{ BACKGROUND_FILENAME ? 'url(\'Build/' + BACKGROUND_FILENAME.replace(/'/g, '%27') + '\') center / cover' : BACKGROUND_COLOR }}}"></canvas>
+  <div id="unity-loading-bar">
+    <div id="unity-progress-bar-full"></div>
+  </div>
+  <div id="unity-warning"></div>
+</div>
+<script src="Build/{{{ LOADER_FILENAME }}}"></script>
+<script>
+  function resizeCanvas() {
+    var canvas = document.querySelector("#unity-canvas");
+    var container = document.querySelector("#unity-container");
 
-        // Calculate aspect ratio 9:16
-        var aspectRatio = 9 / 16;
-        var containerWidth = window.innerWidth;
-        var containerHeight = window.innerHeight;
+    // Calculate aspect ratio 9:16
+    var aspectRatio = 9 / 16;
+    var containerWidth = window.innerWidth;
+    var containerHeight = window.innerHeight;
 
-        if (containerWidth / containerHeight > aspectRatio) {
-          // Constrain by height
-          canvas.style.height = containerHeight + "px";
-          canvas.style.width = containerHeight * aspectRatio + "px";
-        } else {
-          // Constrain by width
-          canvas.style.width = containerWidth + "px";
-          canvas.style.height = containerWidth / aspectRatio + "px";
-        }
-      }
+    if (containerWidth / containerHeight > aspectRatio) {
+      // Constrain by height
+      canvas.style.height = containerHeight + "px";
+      canvas.style.width = containerHeight * aspectRatio + "px";
+    } else {
+      // Constrain by width
+      canvas.style.width = containerWidth + "px";
+      canvas.style.height = containerWidth / aspectRatio + "px";
+    }
+  }
 
-      window.addEventListener("resize", resizeCanvas);
-      resizeCanvas();
+  window.addEventListener("resize", resizeCanvas);
+  resizeCanvas();
 
-      createUnityInstance(document.querySelector("#unity-canvas"), {
-        dataUrl: "Build/{{{ DATA_FILENAME }}}",
-        frameworkUrl: "Build/{{{ FRAMEWORK_FILENAME }}}",
-        #if USE_THREADS
-        workerUrl: "Build/{{{ WORKER_FILENAME }}}",
-        #endif
-        #if USE_WASM
-        codeUrl: "Build/{{{ CODE_FILENAME }}}",
-        #endif
-        #if MEMORY_FILENAME
-        memoryUrl: "Build/{{{ MEMORY_FILENAME }}}",
-        #endif
-        #if SYMBOLS_FILENAME
-        symbolsUrl: "Build/{{{ SYMBOLS_FILENAME }}}",
-        #endif
-        streamingAssetsUrl: "StreamingAssets",
-        companyName: {{{ JSON.stringify(COMPANY_NAME) }}},
-      productName: {{{ JSON.stringify(PRODUCT_NAME) }}},
-      productVersion: {{{ JSON.stringify(PRODUCT_VERSION) }}},
-      // matchWebGLToCanvasSize: false, // Uncomment this to separately control WebGL canvas render size and DOM element size.
-      // devicePixelRatio: 1, // Uncomment this to override low DPI rendering on high DPI displays.
-      });
-    </script>
-  </body>
+  function showLoadingScreen(progress) {
+    if (progress !== undefined) {
+      document.querySelector("#unity-progress-bar-full").style.width = 100 * progress + "%";
+    }
+  }
+
+  function hideLoadingScreen() {
+    document.querySelector("#unity-loading-bar").style.display = "none";
+  }
+
+  function unityShowBanner(msg, type) {
+    const warningBanner = document.querySelector("#unity-warning");
+    function updateBannerVisibility() {
+      warningBanner.style.display = warningBanner.children.length ? 'block' : 'none';
+    }
+    const div = document.createElement('div');
+    div.innerHTML = msg;
+    warningBanner.appendChild(div);
+    if (type === 'error') div.style.background = 'red';
+    else if (type === 'warning') div.style.background = 'yellow';
+    setTimeout(() => {
+      warningBanner.removeChild(div);
+      updateBannerVisibility();
+    }, 5000);
+    updateBannerVisibility();
+  }
+
+  createUnityInstance(document.querySelector("#unity-canvas"), {
+    dataUrl: "Build/{{{ DATA_FILENAME }}}",
+    frameworkUrl: "Build/{{{ FRAMEWORK_FILENAME }}}",
+    #if USE_THREADS
+    workerUrl: "Build/{{{ WORKER_FILENAME }}}",
+    #endif
+    #if USE_WASM
+    codeUrl: "Build/{{{ CODE_FILENAME }}}",
+    #endif
+    #if MEMORY_FILENAME
+    memoryUrl: "Build/{{{ MEMORY_FILENAME }}}",
+    #endif
+    #if SYMBOLS_FILENAME
+    symbolsUrl: "Build/{{{ SYMBOLS_FILENAME }}}",
+    #endif
+    streamingAssetsUrl: "StreamingAssets",
+    companyName: {{{ JSON.stringify(COMPANY_NAME) }}},
+  productName: {{{ JSON.stringify(PRODUCT_NAME) }}},
+  productVersion: {{{ JSON.stringify(PRODUCT_VERSION) }}},
+  showBanner: unityShowBanner,
+  }, showLoadingScreen)
+  .then(() => {
+    hideLoadingScreen();
+  });
+</script>
+</body>
 </html>
