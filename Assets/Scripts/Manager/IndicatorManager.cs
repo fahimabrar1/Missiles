@@ -24,7 +24,7 @@ namespace DefaultNamespace
         {
             if (indicatorPrefab == null || indicatorParent == null || mainCamera == null)
             {
-                Debug.LogWarning("IndicatorManager: Missing references!");
+                MyDebug.LogWarning("IndicatorManager: Missing references!");
                 return null;
             }
 

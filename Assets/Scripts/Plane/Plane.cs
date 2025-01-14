@@ -27,6 +27,7 @@ public class Plane : MonoBehaviour
         _playerInput = GetComponent<PlayerInput>();
     }
 
+
     /// <summary>
     ///     This function is called every fixed framerate frame, if the MonoBehaviour is enabled.
     /// </summary>
@@ -46,8 +47,14 @@ public class Plane : MonoBehaviour
         // Apply tilt for visual effect
         var tilt = -input.x * tiltAmount; // Negative for correct tilt direction
         var tiltRotation = Quaternion.Euler(0, tilt, currentRotation.eulerAngles.z + rotation);
-        Debug.Log("Roota:" + tilt);
+        MyDebug.Log("Roota:" + tilt);
         transform.rotation = tiltRotation;
+    }
+
+
+    private void OnEnable()
+    {
+        transform.rotation = Quaternion.identity;
     }
 
 
@@ -92,8 +99,7 @@ public class Plane : MonoBehaviour
 
     private Vector2 GetInput()
     {
-        return VariableJoystick.Direction;
-        // return _playerInput.PlayerActions.Movement.ReadValue<Vector2>();
+        return VariableJoystick.MoveThreshold > 0 ? VariableJoystick.Direction : Vector2.up;
     }
 
     public void SetSpeed(float speed, int duration)
