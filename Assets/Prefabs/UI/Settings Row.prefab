@@ -462,3 +462,4 @@ MonoBehaviour:
   image: {fileID: 5226985951481463621}
   activeSprite: {fileID: 21300000, guid: f1314e3bd0d08684eaf2d192fb31de43, type: 3}
   inactiveSprite: {fileID: 21300000, guid: a9109d2509c4547459b36f4eea78e0d8, type: 3}
+  toggle: {fileID: 7842104213115189705}
