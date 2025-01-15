@@ -86,6 +86,8 @@ public class InGameUI : MonoBehaviour
 
     public void ShowGameOverUI()
     {
+        CalculateGameScore();
+
         StartCoroutine(showGameOverUI());
 
         IEnumerator showGameOverUI()
@@ -94,7 +96,6 @@ public class InGameUI : MonoBehaviour
             gameOverPanel.SetActive(true);
             pauseButtonScaler.ScaleAndFadeOut();
             playAgainScaler.gameObject.SetActive(false);
-            CalculateGameScore();
             gameOverScaler.ScaleAndFadeIn();
             yield return new WaitForSeconds(2f);
             row1Scaler.ScaleAndFadeIn();
@@ -147,7 +148,10 @@ public class InGameUI : MonoBehaviour
         scoreText.text = _score.ToString();
         var hs = PlayerPrefs.GetInt("high_score", 0);
         if (hs < _score)
+        {
             PlayerPrefs.SetInt("high_score", _score);
+            PlayerPrefs.Save();
+        }
     }
 
     public void UpdateScore(int pointValue)

@@ -6,6 +6,7 @@ public class LevelAudioPlayer : MonoBehaviour
     public static LevelAudioPlayer instance;
 
     public List<AudioModel> AllAudios;
+    public AudioListener audioListener;
 
     /// <summary>
     ///     Awake is called when the script instance is being loaded.
@@ -16,6 +17,8 @@ public class LevelAudioPlayer : MonoBehaviour
             instance = this;
         else
             Destroy(gameObject);
+        var isAudioOn = PlayerPrefs.GetInt("audio_on", 1);
+        AudioListener.volume = isAudioOn;
     }
 
 
@@ -35,18 +38,29 @@ public class LevelAudioPlayer : MonoBehaviour
 
     public void OnPlayAudioByName(string name)
     {
-        MyDebug.Log($"On {name} audio played");
-
         var foundModel = AllAudios.Find(model => model.name.Equals(name));
-        foundModel.Play();
+        if (foundModel != null)
+        {
+            MyDebug.Log($"On {name} audio played");
+            foundModel.Play();
+        }
+        else
+        {
+            MyDebug.Log($"AudioModel with name {name} not found.");
+        }
     }
-
 
     public void OnStopAudioByName(string name)
     {
-        MyDebug.Log("On Token Move audio played");
-
         var foundModel = AllAudios.Find(model => model.name.Equals(name));
-        foundModel.Stop();
+        if (foundModel != null)
+        {
+            MyDebug.Log("On Token Move audio played");
+            foundModel.Stop();
+        }
+        else
+        {
+            MyDebug.Log($"AudioModel with name {name} not found.");
+        }
     }
 }

@@ -17,7 +17,7 @@ namespace UI
 
         public void ToggleButtonOn(bool value)
         {
-            // toggle.is = value;
+            toggle.isOn = value;
         }
     }
 }
