@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.UI;
-using Toggle = UnityEngine.UIElements.Toggle;
 
 namespace UI
 {
@@ -18,7 +17,7 @@ namespace UI
 
         public void ToggleButtonOn(bool value)
         {
-            toggle.value = value;
+            toggle.isOn = value;
         }
     }
 }

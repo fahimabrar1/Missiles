@@ -48,9 +48,8 @@ namespace DefaultNamespace
         public void OnGameOver()
         {
             missileGenerator.DestroyAllMissilesAndDeactivate();
-            skillGenerator.enabled = false;
-            uiManager.ShowGameOverPanel();
             skillGenerator.DestroyAllSkills();
+            uiManager.ShowGameOverPanel();
         }
 
         public void OnAddScore(int pointValue)

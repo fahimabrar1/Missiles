@@ -24,7 +24,7 @@ namespace DefaultNamespace
         {
             if (indicatorPrefab == null || indicatorParent == null || mainCamera == null)
             {
-                Debug.LogWarning("IndicatorManager: Missing references!");
+                MyDebug.LogWarning("IndicatorManager: Missing references!");
                 return null;
             }
 
@@ -32,15 +32,15 @@ namespace DefaultNamespace
             var indicator = Instantiate(indicatorPrefab, Vector3.zero, Quaternion.identity, indicatorParent);
             var indicatorScript = indicator.GetComponent<IIndicator>();
             activeIndicators.Add(indicatorScript);
-            indicatorScript?.Initialize(target, mainCamera);
+            indicatorScript?.Initialize(target, this, mainCamera);
 
             return indicatorScript;
         }
 
         public void DestroyAllIndicators()
         {
-            foreach (var t in activeIndicators)
-                t.OnDestroyIndicatorTarget();
+            foreach (var t in activeIndicators) t?.OnDestroyIndicatorTarget();
+            activeIndicators.Clear();
         }
     }
 }

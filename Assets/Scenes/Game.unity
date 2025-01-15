@@ -1837,7 +1837,7 @@ Camera:
   far clip plane: 50
   field of view: 40
   orthographic: 1
-  orthographic size: 12.27
+  orthographic size: 11
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -4300,6 +4300,7 @@ MonoBehaviour:
     isPitchRandomize: 0
     minPitch: 0.92
     maxPitch: 0.95
+  audioListener: {fileID: 519420029}
 --- !u!1 &1119414486
 GameObject:
   m_ObjectHideFlags: 0
@@ -6209,7 +6210,7 @@ MonoBehaviour:
   m_Follow: {fileID: 930543720}
   m_Lens:
     FieldOfView: 40
-    OrthographicSize: 12.27
+    OrthographicSize: 11
     NearClipPlane: 0.1
     FarClipPlane: 50
     Dutch: 0
@@ -6974,6 +6975,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2417318222960352398, guid: a9a1dcfdcaa84054fa96b592e2ae00f2, type: 3}
+      propertyPath: m_Size.x
+      value: 1.2056668
+      objectReference: {fileID: 0}
+    - target: {fileID: 2417318222960352398, guid: a9a1dcfdcaa84054fa96b592e2ae00f2, type: 3}
+      propertyPath: m_Size.y
+      value: 0.88866675
+      objectReference: {fileID: 0}
+    - target: {fileID: 2417318222960352398, guid: a9a1dcfdcaa84054fa96b592e2ae00f2, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -1887875472, guid: 71b89ab4fb717b44ca4bd8fb053f5796, type: 3}
+    - target: {fileID: 2417318222960352398, guid: a9a1dcfdcaa84054fa96b592e2ae00f2, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3491209803584527484, guid: a9a1dcfdcaa84054fa96b592e2ae00f2, type: 3}
       propertyPath: VariableJoystick
       value: 
@@ -7039,6 +7056,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Settings
       objectReference: {fileID: 0}
+    - target: {fileID: 24886775495920580, guid: 6d644dfe4961595459e1a9bf39632899, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2664841139363548352, guid: 6d644dfe4961595459e1a9bf39632899, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -7047,6 +7068,22 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 1092605602}
+    - target: {fileID: 4513679675070789652, guid: 6d644dfe4961595459e1a9bf39632899, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4513679675070789652, guid: 6d644dfe4961595459e1a9bf39632899, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4513679675070789652, guid: 6d644dfe4961595459e1a9bf39632899, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 153.24236
+      objectReference: {fileID: 0}
+    - target: {fileID: 4513679675070789652, guid: 6d644dfe4961595459e1a9bf39632899, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -50
+      objectReference: {fileID: 0}
     - target: {fileID: 5574973151818277244, guid: 6d644dfe4961595459e1a9bf39632899, type: 3}
       propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -7070,6 +7107,22 @@ PrefabInstance:
     - target: {fileID: 5574973151818277244, guid: 6d644dfe4961595459e1a9bf39632899, type: 3}
       propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
       value: UI.ToggleButton, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 5618162965145221908, guid: 6d644dfe4961595459e1a9bf39632899, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5618162965145221908, guid: 6d644dfe4961595459e1a9bf39632899, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5618162965145221908, guid: 6d644dfe4961595459e1a9bf39632899, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 399.72705
+      objectReference: {fileID: 0}
+    - target: {fileID: 5618162965145221908, guid: 6d644dfe4961595459e1a9bf39632899, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -50
       objectReference: {fileID: 0}
     - target: {fileID: 7983220361364588022, guid: 6d644dfe4961595459e1a9bf39632899, type: 3}
       propertyPath: m_Pivot.x

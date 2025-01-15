@@ -152,10 +152,10 @@ TextureImporter:
       name: missiles_0
       rect:
         serializedVersion: 2
-        x: 148
-        y: 5590
-        width: 3584
-        height: 2634
+        x: 142
+        y: 5576
+        width: 3600
+        height: 2666
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -173,10 +173,10 @@ TextureImporter:
       name: missiles_1
       rect:
         serializedVersion: 2
-        x: 581
-        y: 2594
-        width: 559
-        height: 2196
+        x: 4459
+        y: 5576
+        width: 3617
+        height: 2666
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -194,10 +194,10 @@ TextureImporter:
       name: missiles_2
       rect:
         serializedVersion: 2
-        x: 1656
-        y: 3765
-        width: 338
-        height: 1046
+        x: 567
+        y: 2575
+        width: 591
+        height: 2217
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -215,10 +215,10 @@ TextureImporter:
       name: missiles_3
       rect:
         serializedVersion: 2
-        x: 2495
-        y: 3411
-        width: 416
-        height: 1350
+        x: 1642
+        y: 3759
+        width: 366
+        height: 1066
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -236,10 +236,10 @@ TextureImporter:
       name: missiles_4
       rect:
         serializedVersion: 2
-        x: 3415
-        y: 1407
-        width: 817
-        height: 3404
+        x: 2475
+        y: 3392
+        width: 450
+        height: 1383
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -257,10 +257,10 @@ TextureImporter:
       name: missiles_5
       rect:
         serializedVersion: 2
-        x: 4569
-        y: 2269
-        width: 863
-        height: 2479
+        x: 3409
+        y: 1409
+        width: 833
+        height: 3415
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -278,10 +278,10 @@ TextureImporter:
       name: missiles_6
       rect:
         serializedVersion: 2
-        x: 6440
-        y: 3765
-        width: 338
-        height: 1046
+        x: 4559
+        y: 2259
+        width: 883
+        height: 2499
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -299,10 +299,10 @@ TextureImporter:
       name: missiles_7
       rect:
         serializedVersion: 2
-        x: 7278
-        y: 3411
-        width: 416
-        height: 1350
+        x: 6426
+        y: 3759
+        width: 366
+        height: 1066
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -320,10 +320,10 @@ TextureImporter:
       name: missiles_8
       rect:
         serializedVersion: 2
-        x: 1640
-        y: 2378
-        width: 375
-        height: 887
+        x: 7259
+        y: 3392
+        width: 450
+        height: 1383
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -341,10 +341,10 @@ TextureImporter:
       name: missiles_9
       rect:
         serializedVersion: 2
-        x: 2490
-        y: 1477
-        width: 416
-        height: 1613
+        x: 1625
+        y: 2375
+        width: 400
+        height: 900
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -362,10 +362,10 @@ TextureImporter:
       name: missiles_10
       rect:
         serializedVersion: 2
-        x: 6386
-        y: 2173
-        width: 403
-        height: 1413
+        x: 2475
+        y: 1475
+        width: 450
+        height: 1617
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -383,10 +383,10 @@ TextureImporter:
       name: missiles_11
       rect:
         serializedVersion: 2
-        x: 7269
-        y: 2328
-        width: 436
-        height: 933
+        x: 6376
+        y: 2159
+        width: 432
+        height: 1433
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -404,10 +404,10 @@ TextureImporter:
       name: missiles_12
       rect:
         serializedVersion: 2
-        x: 677
-        y: 298
-        width: 400
-        height: 1733
+        x: 7259
+        y: 2309
+        width: 464
+        height: 949
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -425,10 +425,10 @@ TextureImporter:
       name: missiles_13
       rect:
         serializedVersion: 2
-        x: 1605
-        y: 944
+        x: 658
+        y: 292
         width: 434
-        height: 933
+        height: 1750
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -438,6 +438,27 @@ TextureImporter:
       bones: []
       spriteID: 8dc2ba948918b0743ae2fbd062788a60
       internalID: -613247039
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: missiles_14
+      rect:
+        serializedVersion: 2
+        x: 1592
+        y: 925
+        width: 450
+        height: 966
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 44685bddd0b821f4e9b4008a250ee6bd
+      internalID: 2090800941
       vertices: []
       indices: 
       edges: []
@@ -459,6 +480,7 @@ TextureImporter:
       missiles_11: 628854751
       missiles_12: -1627935147
       missiles_13: -613247039
+      missiles_14: 2090800941
       missiles_2: 2097831400
       missiles_3: -204239620
       missiles_4: 1397448877

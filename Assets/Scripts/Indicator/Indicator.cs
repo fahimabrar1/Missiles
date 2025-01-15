@@ -1,4 +1,5 @@
 using System;
+using DefaultNamespace;
 using Interfaces;
 using UnityEngine;
 using UnityEngine.UI;
@@ -12,9 +13,12 @@ namespace Indicator
         public Image outerImage;
 
         private RectTransform _indicator;
+
+        private IndicatorManager _indicatorManager;
+
+        private bool _isDestroyed;
         private Camera _mainCamera;
         private Transform _target;
-
 
         private void LateUpdate()
         {
@@ -44,22 +48,32 @@ namespace Indicator
             _indicator.rotation = Quaternion.Euler(0, 0, angle - 90);
         }
 
-        public void Initialize(Transform target, Camera mainCamera)
+        public void OnDestroyIndicatorTarget()
         {
+            if (_isDestroyed) return;
+            _isDestroyed = true;
+
+            try
+            {
+                if (_indicatorManager.activeIndicators.Contains(this))
+                {
+                    _indicatorManager.activeIndicators.Remove(this);
+                    Destroy(gameObject);
+                }
+            }
+            catch (Exception e)
+            {
+                Debug.LogError($"Error removing indicator: {e}");
+            }
+        }
+
+
+        public void Initialize(Transform target, IndicatorManager indicatorManager, Camera mainCamera)
+        {
+            _indicatorManager = indicatorManager;
             _target = target;
             _mainCamera = mainCamera;
             _indicator = GetComponent<RectTransform>();
-        }
-
-        public void OnDestroyIndicatorTarget()
-        {
-            try
-            {
-                Destroy(gameObject);
-            }
-            catch (Exception)
-            {
-            }
         }
     }
 }
