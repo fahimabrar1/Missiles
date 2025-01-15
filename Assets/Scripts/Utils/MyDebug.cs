@@ -10,7 +10,7 @@ public abstract class MyDebug
     public static void LogWarning(string str)
     {
 #if DEBUG
-        //Debug.LogWarning(str);
+        // Debug.LogWarning(str);
 #endif
     }
 

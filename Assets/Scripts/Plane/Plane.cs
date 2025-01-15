@@ -70,7 +70,7 @@ public class Plane : MonoBehaviour
 
             // Trigger explosion effect
             if (DestroyParticle != null)
-                Instantiate(DestroyParticle, transform.position, Quaternion.identity);
+                Destroy(Instantiate(DestroyParticle, transform.position, Quaternion.identity), 5);
 
             LevelAudioPlayer.instance.OnPlayAudioByName("explosion-large");
 
