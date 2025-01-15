@@ -86,5 +86,6 @@ public class SkillGenerator : MonoBehaviour
     {
         for (var i = spawnedObjects.Count - 1; i >= 0; i--) Destroy(spawnedObjects[i].gameObject);
         spawnedObjects.Clear();
+        enabled = false;
     }
 }
