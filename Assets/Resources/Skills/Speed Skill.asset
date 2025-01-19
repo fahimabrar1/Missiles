@@ -15,5 +15,5 @@ MonoBehaviour:
   skillModel:
     skillPrefab: {fileID: 3887895011491419491, guid: 82dcc1eb7a8bd7445bb7d5d953415ffc, type: 3}
     indicatorPrefab: {fileID: 4897418713649756800, guid: ce62b14f21d682443b607aabc054b1c3, type: 3}
-  speed: 180
+  speed: 220
   speedDuration: 10

@@ -39,7 +39,9 @@ namespace DefaultNamespace
 
         public void DestroyAllIndicators()
         {
-            foreach (var t in activeIndicators) t?.OnDestroyIndicatorTarget();
+            // Create a copy of the list to iterate over
+            var indicatorsCopy = new List<IIndicator>(activeIndicators);
+            foreach (var t in indicatorsCopy) t?.OnDestroyIndicatorTarget();
             activeIndicators.Clear();
         }
     }

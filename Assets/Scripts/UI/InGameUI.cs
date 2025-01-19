@@ -31,7 +31,7 @@ public class InGameUI : MonoBehaviour
         set
         {
             score = value;
-            starText.SetText(score.ToString());
+            starText.SetText((score * 10).ToString());
             topScoreText.SetText(score.ToString());
         }
     }
@@ -143,7 +143,7 @@ public class InGameUI : MonoBehaviour
         Stopwatch.StopTimer();
         var totalSecond = Stopwatch.GetSeconds();
         clockText.text = totalSecond.ToString();
-        var _score = totalSecond + score * 10;
+        var _score = totalSecond + Score * 10;
         largeScoreText.text = _score.ToString();
         scoreText.text = _score.ToString();
         var hs = PlayerPrefs.GetInt("high_score", 0);

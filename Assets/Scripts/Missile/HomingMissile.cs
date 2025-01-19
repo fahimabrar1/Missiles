@@ -65,7 +65,14 @@ public class HomingMissile : MonoBehaviour, IMissile
 
     private void OnDisable()
     {
-        Indicator?.OnDestroyIndicatorTarget();
+        try
+        {
+            Indicator?.OnDestroyIndicatorTarget();
+        }
+        catch (Exception e)
+        {
+            Debug.LogError($"Error removing indicator: {e}");
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

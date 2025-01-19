@@ -286,8 +286,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d6a148715b04354a8e9d0afdc79c72d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 400
-  steerSpeed: 100
+  speed: 450
+  steerSpeed: 120
   target: {fileID: 0}
   explosionPrefab: {fileID: 8605930319218247836, guid: 59280416a8a58e64e9b5850ef721cabc, type: 3}
   randomAreaRadius: 10

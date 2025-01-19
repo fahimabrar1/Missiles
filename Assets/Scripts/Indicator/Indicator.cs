@@ -70,6 +70,7 @@ namespace Indicator
 
         public void Initialize(Transform target, IndicatorManager indicatorManager, Camera mainCamera)
         {
+            _isDestroyed = false;
             _indicatorManager = indicatorManager;
             _target = target;
             _mainCamera = mainCamera;
