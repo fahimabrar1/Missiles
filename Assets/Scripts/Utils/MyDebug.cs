@@ -5,7 +5,7 @@ public abstract class MyDebug
     public static void Log(string str)
     {
 #if DEBUG
-        Debug.Log(str);
+       // Debug.Log(str);
 #endif
     }
 
