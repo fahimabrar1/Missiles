@@ -9,7 +9,7 @@ using Random = UnityEngine.Random;
 public class SkillGenerator : MonoBehaviour
 {
     public int minRespawn = 10; // Max number of objects in the scene
-    public int maxRespawn = 30; // Max number of objects in the scen
+    public int maxRespawn = 20; // Max number of objects in the scen
     public int maxObjects = 10; // Max number of objects in the scene
     public float minRadius = 5f; // Minimum spawn radius
     public float maxRadius = 20f; // Maximum spawn radius

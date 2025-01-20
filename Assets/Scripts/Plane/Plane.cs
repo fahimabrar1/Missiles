@@ -31,25 +31,51 @@ public class Plane : MonoBehaviour
     /// <summary>
     ///     This function is called every fixed framerate frame, if the MonoBehaviour is enabled.
     /// </summary>
+    /// <summary>
+    ///     This function is called every fixed framerate frame, if the MonoBehaviour is enabled.
+    /// </summary>
     private void FixedUpdate()
     {
         var input = GetInput();
 
-        // Apply forward movement
-        _rb.velocity = speed * speedMultiplier * Time.deltaTime * transform.up;
+        if (input != Vector2.zero)
+        {
+            // Calculate the target direction based on joystick input
+            var targetDirection = input.normalized;
 
-        // Calculate the rotation based on horizontal input
-        var rotation = -input.x * steer * Time.deltaTime;
+            // Smoothly rotate toward the target direction
+            var targetAngle = Mathf.Atan2(targetDirection.y, targetDirection.x) * Mathf.Rad2Deg - 90f;
+            var smoothedAngle = Mathf.MoveTowardsAngle(transform.eulerAngles.z, targetAngle, steer * Time.deltaTime);
 
-        // Update the plane's overall rotation
-        var currentRotation = transform.rotation;
+            transform.rotation = Quaternion.Euler(0, 0, smoothedAngle);
 
-        // Apply tilt for visual effect
-        var tilt = -input.x * tiltAmount; // Negative for correct tilt direction
-        var tiltRotation = Quaternion.Euler(0, tilt, currentRotation.eulerAngles.z + rotation);
-        MyDebug.Log("Roota:" + tilt);
-        transform.rotation = tiltRotation;
+            // Apply tilt for visual feedback
+            var tilt = -input.x * tiltAmount; // Negative for correct tilt direction
+            transform.rotation *= Quaternion.Euler(0, tilt, 0);
+        }
+
+        // Move forward in the current direction
+        _rb.velocity = transform.up * (speed * speedMultiplier * Time.deltaTime);
     }
+    // private void FixedUpdate()
+    // {
+    //     var input = GetInput();
+    //
+    //     // Apply forward movement
+    //     _rb.velocity = speed * speedMultiplier * Time.deltaTime * transform.up;
+    //
+    //     // Calculate the rotation based on horizontal input
+    //     var rotation = -input.x * steer * Time.deltaTime;
+    //
+    //     // Update the plane's overall rotation
+    //     var currentRotation = transform.rotation;
+    //
+    //     // Apply tilt for visual effect
+    //     var tilt = -input.x * tiltAmount; // Negative for correct tilt direction
+    //     var tiltRotation = Quaternion.Euler(0, tilt, currentRotation.eulerAngles.z + rotation);
+    //     MyDebug.Log("Roota:" + tilt);
+    //     transform.rotation = tiltRotation;
+    // }
 
 
     private void OnEnable()
@@ -99,7 +125,9 @@ public class Plane : MonoBehaviour
 
     private Vector2 GetInput()
     {
-        return VariableJoystick.MoveThreshold > 0 ? VariableJoystick.Direction : Vector2.up;
+        return VariableJoystick.Direction.magnitude > VariableJoystick.MoveThreshold
+            ? VariableJoystick.Direction.normalized
+            : Vector2.zero;
     }
 
     public void SetSpeed(float speed, int duration)
